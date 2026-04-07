@@ -3,6 +3,10 @@ path: graphql-as-rest-api-data-layer
 date: 2020-07-06T00:24:47.596Z
 title: GraphQL organizing your REST APIs
 description: GraphQL organizing your REST APIs
+tags:
+    - GraphQL
+    - REST API
+    - Architecture
 ---
 
 In this blog post, you will learn how you can fetch related data from REST endpoints without ending up with several HTTP requests on the front-end. We will use GraphQL as a REST API data layer.
@@ -39,7 +43,7 @@ So far everything looks good but, things will get more complicated on the front-
 
 A list of heroes movie cards. For each card, it shows the villain’s picture and name as well as the heroes who saved the day. When clicking on a card it will open up the trailer on a separate tab.
 
-![Heroes Movies application](/assets/heroesmovies.png "Heroes Movies application")
+![Heroes Movies application](/assets/heroesmovies.png 'Heroes Movies application')
 
 For every movie coming from `/movies`, we need to display the information of the villain and the heroes but we only have id's exposed. We would have to deal with multiple API calls on the front-end to get all the data needed, and also play with `Promises` to wait for the related data. Something like this:
 
@@ -119,23 +123,23 @@ An Apollo server is pretty simple, this is the entry point `index.js`:
 
 ```javascript
 //index.js
-const { ApolloServer, gql } = require("apollo-server")
-const typeDefs = require("./typeDefs")
-const resolvers = require("./resolvers")
-const RestAPI = require("./dataSource")
+const { ApolloServer, gql } = require('apollo-server');
+const typeDefs = require('./typeDefs');
+const resolvers = require('./resolvers');
+const RestAPI = require('./dataSource');
 
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  dataSources: () => {
-    return { restAPI: new RestAPI() }
-  },
-})
+    typeDefs,
+    resolvers,
+    dataSources: () => {
+        return { restAPI: new RestAPI() };
+    }
+});
 
 // The `listen` method launches a web server.
 server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`)
-})
+    console.log(`🚀  Server ready at ${url}`);
+});
 ```
 
 It is just grouping together three files into the class `ApolloServer`, witch one referring to one important concept when we talk about GraphQL Server: `typeDefs`, `Resolvers`, and `dataSources`. Let's take a closer look at them:
@@ -148,35 +152,35 @@ Let's create the following entities:
 
 ```javascript
 //typeDefs.js
-const { gql } = require("apollo-server")
+const { gql } = require('apollo-server');
 
 const typeDefs = gql`
-  type Hero {
-    id: ID
-    name: String!
-    photo: String!
-  }
+    type Hero {
+        id: ID
+        name: String!
+        photo: String!
+    }
 
-  type Villain {
-    id: ID
-    name: String!
-    photo: String!
-  }
+    type Villain {
+        id: ID
+        name: String!
+        photo: String!
+    }
 
-  type Movie {
-    id: ID
-    name: String!
-    link: String!
-    villain: Villain!
-    heroes: [Hero!]!
-  }
+    type Movie {
+        id: ID
+        name: String!
+        link: String!
+        villain: Villain!
+        heroes: [Hero!]!
+    }
 
-  type Query {
-    getMovies: [Mission!]!
-  }
-`
+    type Query {
+        getMovies: [Mission!]!
+    }
+`;
 
-module.exports = typeDefs
+module.exports = typeDefs;
 ```
 
 Let's take a closer look at the `Movie` entity. There, we say it has a villain of the type `Villain` and it also has multiple heroes, as a collection of `Hero`.
@@ -252,28 +256,28 @@ DataSources define where load things from. In this case, I have used the `apollo
 
 ```javascript
 //dataSource.js
-const { RESTDataSource } = require("apollo-datasource-rest")
+const { RESTDataSource } = require('apollo-datasource-rest');
 
 class RestAPI extends RESTDataSource {
-  constructor() {
-    super()
-    this.baseURL = "http://localhost:3030/"
-  }
+    constructor() {
+        super();
+        this.baseURL = 'http://localhost:3030/';
+    }
 
-  async getMovies() {
-    return this.get("movies")
-  }
+    async getMovies() {
+        return this.get('movies');
+    }
 
-  async getVillain(id) {
-    return this.get(`villains/${id}`)
-  }
+    async getVillain(id) {
+        return this.get(`villains/${id}`);
+    }
 
-  async getHero(id) {
-    return this.get(`heroes/${id}`)
-  }
+    async getHero(id) {
+        return this.get(`heroes/${id}`);
+    }
 }
 
-module.exports = RestAPI
+module.exports = RestAPI;
 ```
 
 **Wrapping up our GraphQL Server**
@@ -282,7 +286,7 @@ At this point, if you run `yarn start` or `npm start` you will start the server.
 
 On your browser, navigating to http://localhost:4000/ should open the GraphQL playground.
 
-![Apollo playground](/assets/graphqlplayground.png "Apollo playground")
+![Apollo playground](/assets/graphqlplayground.png 'Apollo playground')
 
 Cool! Now we have our GraphQL running! Can you feel the power? ⚡
 
@@ -304,44 +308,44 @@ Now we need to connect our Apollo Server with our front-end through `ApolloProvi
 
 ```javascript
 //index.js
-import { ApolloProvider } from "@apollo/react-hooks"
-import ApolloClient from "apollo-boost"
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000",
-})
+    uri: 'http://localhost:4000'
+});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
-)
+    <React.StrictMode>
+        <ApolloProvider client={client}>
+            <App />
+        </ApolloProvider>
+    </React.StrictMode>,
+    document.getElementById('root')
+);
 ```
 
 Perfect! Now let's create the `graphql/query.js` file to create our first query asking for what we want:
 
 ```javascript
-import { useQuery } from "@apollo/react-hooks"
-import { gql } from "apollo-boost"
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 
 export const MOVIES_QUERY = gql`
-  {
-    getMovies {
-      name
-      villain {
-        name
-        photo
-      }
-      heroes {
-        name
-        photo
-      }
+    {
+        getMovies {
+            name
+            villain {
+                name
+                photo
+            }
+            heroes {
+                name
+                photo
+            }
+        }
     }
-  }
-`
+`;
 ```
 
 Awesome! Now, we just need to use it!
@@ -349,34 +353,34 @@ Awesome! Now, we just need to use it!
 Let's open the `App.js` and hook it up (literally) with the query that we just built using `useQuery`:
 
 ```javascript
-import React from "react"
-import MovieCard from "./components/MovieCard"
-import { useQuery } from "@apollo/react-hooks"
-import { gql } from "apollo-boost"
-import { MISSIONS_QUERY } from "./graphql/query"
+import React from 'react';
+import MovieCard from './components/MovieCard';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import { MISSIONS_QUERY } from './graphql/query';
 
 const App = () => {
-  const { loading, error, data } = useQuery(MISSIONS_QUERY)
+    const { loading, error, data } = useQuery(MISSIONS_QUERY);
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :(</p>
-  const movies = data.getMovies
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
+    const movies = data.getMovies;
 
-  return (
-    <div className="app">
-      <header className="app-header">
-        <h1>Heroes movies 🍿🎬</h1>
-      </header>
-      <div className="list">
-        {movies.map((movie, index) => (
-          <MovieCard key={index} {...movie} />
-        ))}
-      </div>
-    </div>
-  )
-}
+    return (
+        <div className="app">
+            <header className="app-header">
+                <h1>Heroes movies 🍿🎬</h1>
+            </header>
+            <div className="list">
+                {movies.map((movie, index) => (
+                    <MovieCard key={index} {...movie} />
+                ))}
+            </div>
+        </div>
+    );
+};
 
-export default App
+export default App;
 ```
 
 `useQuery` returns an object containing `loading`, `error`, and `data`. Inside `data`, all the movies we asked for will be included, containing the information about the villains and heroes.
@@ -384,23 +388,23 @@ export default App
 Now we just need to render it. On the code above I am rendering each `movie` with the component `MovieCard`. Let's take a closer look at that component:
 
 ```javascript
-import React from "react"
-import ListItem from "./ListItem"
+import React from 'react';
+import ListItem from './ListItem';
 
 const MovieCard = ({ name, link, villain, heroes }) => (
-  <div className="movie" onClick={() => window.open(link, "_blank")}>
-    <h2 className="title">{name}</h2>
-    <div className="label">Villain:</div>
-    <ListItem name={villain.name} photo={villain.photo} />
+    <div className="movie" onClick={() => window.open(link, '_blank')}>
+        <h2 className="title">{name}</h2>
+        <div className="label">Villain:</div>
+        <ListItem name={villain.name} photo={villain.photo} />
 
-    <div className="label">Heroes who saved the day:</div>
-    {heroes.map((hero, index) => (
-      <ListItem key={index} name={hero.name} photo={hero.photo} />
-    ))}
-  </div>
-)
+        <div className="label">Heroes who saved the day:</div>
+        {heroes.map((hero, index) => (
+            <ListItem key={index} name={hero.name} photo={hero.photo} />
+        ))}
+    </div>
+);
 
-export default MovieCard
+export default MovieCard;
 ```
 
 As you can see it receives `villain` and `heroes` with name and photo and just renders it. AMAZING!!

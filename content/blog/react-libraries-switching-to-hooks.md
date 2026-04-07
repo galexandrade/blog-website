@@ -7,6 +7,10 @@ description: >-
     switched to using hooks, comparing what the code looked like before and after
     the switch.
 featured: true
+tags:
+    - React
+    - Hooks
+    - Libraries
 ---
 
 We will take a look at some of the most common libraries, seeing how they switched to using hooks, comparing what the code looked like before and after the switch.

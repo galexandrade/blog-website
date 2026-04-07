@@ -3,14 +3,19 @@ path: 2020-the-year-of-10x-growth
 date: 2020-12-31T06:00:00.000Z
 title: '2020, the year of 10x growth'
 description: >-
-  It seems 2020 was the year where everything stopped but, looking back after 9
-  months of pandemy we can see that we actually grew much more than we thought.
+    It seems 2020 was the year where everything stopped but, looking back after 9
+    months of pandemy we can see that we actually grew much more than we thought.
+tags:
+    - Career
+    - Productivity
+    - Personal Growth
 ---
+
 How to grow in a year we see everything slowing down for the first time in history? In this blog post, I will share what I learned and how to measure growth properly.
 
-![Dinosaurs in drumheller](/assets/10x-growth.webp "2020 seems bigger but we are stronger")
+![Dinosaurs in drumheller](/assets/10x-growth.webp '2020 seems bigger but we are stronger')
 
-This is not going to be a technical blog post, but instead, I will share some tips that have been working for me to be more productive and have a balanced life that everyone, including devs, could benefit from it. 
+This is not going to be a technical blog post, but instead, I will share some tips that have been working for me to be more productive and have a balanced life that everyone, including devs, could benefit from it.
 
 What a year!
 
@@ -38,9 +43,9 @@ You might be wondering, the post title tells about 10x growth, right?
 
 It depends on how do you measure growth. We usually measure it only by tangible variables:
 
-* Position: job title, promotions
-* Deliveries: projects finished, deadlines accomplished
-* Material achievements: new house, new car, new something else
+- Position: job title, promotions
+- Deliveries: projects finished, deadlines accomplished
+- Material achievements: new house, new car, new something else
 
 But 2020 came to teach us how to see growth from a different perspective:
 
@@ -54,15 +59,15 @@ During the pandemic, I learned that building morning habits can exponentially in
 
 It is funny because I was not the kind of person who enjoyed reading but now I love it! One of the books that helped me was [_High performance habits_](https://brendon.mykajabi.com/hph-book-step-1) written by Brendon Burchard. No, I am not earning anything for recommending his book.
 
-![High performance habits](/assets/best-personal-development-books-1-e1555808044735-1024x894.webp "High performance habits")
+![High performance habits](/assets/best-personal-development-books-1-e1555808044735-1024x894.webp 'High performance habits')
 
-With this book, I learned how to effectively plan my day. That was a game-changer. I had no idea how many distractions I had until I started planning my day and as a result, I started getting way more things done in all areas of my life. 
+With this book, I learned how to effectively plan my day. That was a game-changer. I had no idea how many distractions I had until I started planning my day and as a result, I started getting way more things done in all areas of my life.
 
 ## **Loved ones**
 
 After learning how to plan my day properly and have a better life balance, I was able to find time to stop and enjoy the time spent with my family without worrying about a project or something else I had on my to-do list. I was finally there! Present!
 
-![Spending quality time with family](/assets/cycling-with-family.jpg "Spending quality time with family")
+![Spending quality time with family](/assets/cycling-with-family.jpg 'Spending quality time with family')
 
 This pandemic came to teach me that no matter how successful you are in your professional career, what your kids only want is to play with you. They only want you to be there and enjoy the moment.
 
@@ -72,13 +77,13 @@ It is so easy to just know the shallow or to just make it work without understan
 
 In the software development world, there are thousands of thousands of languages, frameworks, and tools. It is impossible to master all of them! This year I decided to focus on what I love doing: Front end. And master it!
 
-With this clarity in mind about my carer, I could target the areas I needed to improve so, I invested in learning with those who are reference. I am so proud I was able to take the [Epic React training](https://epicreact.dev) by Kent C. Dots. It has sky rocked my React skills (thanks Kent). 
+With this clarity in mind about my carer, I could target the areas I needed to improve so, I invested in learning with those who are reference. I am so proud I was able to take the [Epic React training](https://epicreact.dev) by Kent C. Dots. It has sky rocked my React skills (thanks Kent).
 
 I also started this tech blog to share my learnings. We only learn when we help others! (this is also stretching my writing skills).
 
 ...
 
-See? For me, this was indeed a year of 10x growth! It just depends on how growth is measured. 
+See? For me, this was indeed a year of 10x growth! It just depends on how growth is measured.
 
 Although we all had to slow down, this year helped me to value what money cannot buy!
 

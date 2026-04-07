@@ -3,8 +3,11 @@ path: you-are-writing-legacy-code
 date: 2020-03-18T15:23:43.280Z
 title: You are writing legacy code
 description: >-
-  Technology is constantly evolving, and that makes the code we write today the
-  one we are going to rewrite tomorrow.
+    Technology is constantly evolving, and that makes the code we write today the
+    one we are going to rewrite tomorrow.
+tags:
+    - Legacy Code
+    - Architecture
 ---
 
 Technology is constantly evolving, and that makes the code we write today the one we are going to rewrite tomorrow.
@@ -25,7 +28,7 @@ No one wants to start a new business or project with old or deprecated technolog
 
 Let’s say that we are building our new startup back in 2005. Our app does a lot of cool things. One of them is to show a list of heroes that looks like this:
 
-![Heroes list](/assets/heroes-list.png "Heroes list")
+![Heroes list](/assets/heroes-list.png 'Heroes list')
 
 **_Server rendering_**
 
@@ -71,39 +74,39 @@ As our product grows, our team grows as well and we realize that jQuery doesn't 
 Here we go to rewrite our application to React:
 
 ```javascript
-import React, { Component } from "react"
-import { fetchHeroes } from "./api"
-import "./styles.css"
+import React, { Component } from 'react';
+import { fetchHeroes } from './api';
+import './styles.css';
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      heroes: [],
+    constructor() {
+        super();
+        this.state = {
+            heroes: []
+        };
     }
-  }
 
-  componentDidMount() {
-    fetchHeroes().then(data => {
-      this.setState({
-        heroes: data,
-      })
-    })
-  }
+    componentDidMount() {
+        fetchHeroes().then((data) => {
+            this.setState({
+                heroes: data
+            });
+        });
+    }
 
-  render() {
-    return (
-      <div className="App">
-        <ul>
-          {this.state.heroes.map(hero => (
-            <li key={hero}>{hero}</li>
-          ))}
-        </ul>
-      </div>
-    )
-  }
+    render() {
+        return (
+            <div className="App">
+                <ul>
+                    {this.state.heroes.map((hero) => (
+                        <li key={hero}>{hero}</li>
+                    ))}
+                </ul>
+            </div>
+        );
+    }
 }
-export default App
+export default App;
 ```
 
 [![Edit React Fetch Heroes - full lifecycle](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-fetch-heroes-59u61?fontsize=14&hidenavigation=1&theme=dark)
@@ -113,28 +116,28 @@ The code above fetches the data from the server once the component was loaded an
 Sometime later, `hooks` feature was added to React, improving the way our apps are written a lot. We started using it, and soon we updated our hero list to use hooks:
 
 ```javascript
-import React, { useState, useEffect } from "react"
-import { fetchHeroes } from "./api"
-import "./styles.css"
+import React, { useState, useEffect } from 'react';
+import { fetchHeroes } from './api';
+import './styles.css';
 
 const App = () => {
-  const [heroes, setHeroes] = useState([])
+    const [heroes, setHeroes] = useState([]);
 
-  useEffect(() => {
-    fetchHeroes().then(data => setHeroes(data))
-  }, [setHeroes])
+    useEffect(() => {
+        fetchHeroes().then((data) => setHeroes(data));
+    }, [setHeroes]);
 
-  return (
-    <div className="App">
-      <ul>
-        {heroes.map(hero => (
-          <li key={hero}>{hero}</li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-export default App
+    return (
+        <div className="App">
+            <ul>
+                {heroes.map((hero) => (
+                    <li key={hero}>{hero}</li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+export default App;
 ```
 
 [![Edit React Fetch Heroes](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-fetch-heroes-jb1of?fontsize=14&hidenavigation=1&theme=dark)
@@ -177,7 +180,7 @@ With that in mind, **what really matters is leaving behind a good code**, so our
 
 There is just one rule to rule everything, and it is called [KISS](http://wiki.c2.com/?KeepItSimple):
 
-![KISS - Keep It Simple Stupid](/assets/kiss.png "KISS - Keep It Simple Stupid")
+![KISS - Keep It Simple Stupid](/assets/kiss.png 'KISS - Keep It Simple Stupid')
 
 Keeping it simple can be hard, though. It is not the scope of this article to cover how to keep your code simple, as this could take a whole new blog post, but simple actions can help your code to be clear, for example:
 

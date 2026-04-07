@@ -3,11 +3,16 @@ path: understanding-css-specificity-rules
 date: 2021-07-28T03:00:00.000Z
 title: Understanding CSS specificity rules
 description: >-
-  CSS specificity rules are tricky to understand. In this blog post we will
-  learn how to master it.
+    CSS specificity rules are tricky to understand. In this blog post we will
+    learn how to master it.
 featured: true
+tags:
+    - CSS
+    - Web Development
+    - Frontend
 ---
-![Important](/assets/important.png "CSS specificity rules are tricky to understand. In this blog post we will learn how to master it.")
+
+![Important](/assets/important.png 'CSS specificity rules are tricky to understand. In this blog post we will learn how to master it.')
 
 If you have ever worked with CSS, I bet you have already faced a situation where some CSS changes were not getting applied as expected, making no sense at all. The solution ended up using the `!important` statement at the end of it. It magically worked! But you had no idea why.
 
@@ -52,11 +57,11 @@ Now, try adding an `!important` to the `body div` selector and see what happens.
 
 ```css
 body div {
-   background-color: red !important;
+    background-color: red !important;
 }
 ```
 
-Yes. Now all the boxes are red. 
+Yes. Now all the boxes are red.
 
 ![Boxes](/assets/screen-shot-2021-06-30-at-12.37.46-pm.png)
 
