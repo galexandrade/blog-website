@@ -1,26 +1,103 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #f1f5f9;
+    --foreground: #0f172a;
+}
+
+html.dark {
+    --background: #081532;
+    --foreground: #e2e8f0;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+a {
+    color: inherit;
+}
+
+::selection {
+    background: rgb(99 102 241 / 0.28);
+}
+
+.markdown-content pre {
+    position: relative;
+    overflow-x: auto;
+}
+
+.markdown-content pre code {
+    display: block;
+    background: transparent;
+    color: inherit;
+}
+
+.markdown-content .hljs {
+    color: #d6deeb;
+    background: transparent;
+}
+
+.markdown-content .hljs-comment,
+.markdown-content .hljs-quote {
+    color: #7f8aa3;
+    font-style: italic;
+}
+
+.markdown-content .hljs-keyword,
+.markdown-content .hljs-selector-tag,
+.markdown-content .hljs-literal,
+.markdown-content .hljs-doctag,
+.markdown-content .hljs-section,
+.markdown-content .hljs-link {
+    color: #c792ea;
+}
+
+.markdown-content .hljs-string,
+.markdown-content .hljs-regexp,
+.markdown-content .hljs-attribute,
+.markdown-content .hljs-addition,
+.markdown-content .hljs-template-tag {
+    color: #ecc48d;
+}
+
+.markdown-content .hljs-number,
+.markdown-content .hljs-symbol,
+.markdown-content .hljs-bullet,
+.markdown-content .hljs-meta,
+.markdown-content .hljs-meta-keyword {
+    color: #f78c6c;
+}
+
+.markdown-content .hljs-title,
+.markdown-content .hljs-function,
+.markdown-content .hljs-class .hljs-title {
+    color: #82aaff;
+}
+
+.markdown-content .hljs-variable,
+.markdown-content .hljs-template-variable,
+.markdown-content .hljs-selector-class,
+.markdown-content .hljs-selector-attr,
+.markdown-content .hljs-type {
+    color: #ffcb8b;
+}
+
+.markdown-content .hljs-built_in,
+.markdown-content .hljs-params {
+    color: #addb67;
 }

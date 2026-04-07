@@ -1,66 +1,100 @@
-import Image from 'next/image';
+import Link from 'next/link';
+import { BlogCard } from '@/app/components/blog/blog-card';
+import { getLatestPosts } from '@/app/lib/blog';
 
 export default function Home() {
+    const latestPosts = getLatestPosts(3);
+    const expertise = [
+        {
+            title: 'React & TypeScript',
+            description: 'Building robust component libraries',
+            icon: '</>'
+        },
+        {
+            title: 'Design Systems',
+            description: 'Creating scalable UI architectures',
+            icon: '◔'
+        },
+        {
+            title: 'Component Architecture',
+            description: 'Patterns & best practices',
+            icon: '◫'
+        },
+        {
+            title: 'Modern CSS',
+            description: 'Advanced styling techniques',
+            icon: '✧'
+        }
+    ];
+
     return (
-        <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-            <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-                <Image
-                    className="dark:invert"
-                    src="/next.svg"
-                    alt="Next.js logo"
-                    width={100}
-                    height={20}
-                    priority
-                />
-                <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-                    <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-                        To get started, edit the page.tsx file.
-                    </h1>
-                    <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-                        Looking for a starting point or more instructions? Head
-                        over to{' '}
-                        <a
-                            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                            className="font-medium text-zinc-950 dark:text-zinc-50"
-                        >
-                            Templates
-                        </a>{' '}
-                        or the{' '}
-                        <a
-                            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                            className="font-medium text-zinc-950 dark:text-zinc-50"
-                        >
-                            Learning
-                        </a>{' '}
-                        center.
-                    </p>
+        <div className="mx-auto w-full max-w-6xl px-4 pb-16 pt-12 sm:px-6">
+            <section className="mx-auto mb-16 max-w-4xl text-center">
+                <div className="mx-auto mb-8 flex h-22 w-22 items-center justify-center rounded-full bg-gradient-to-br from-indigo-400 to-slate-500 text-4xl font-semibold text-slate-950">
+                    SE
                 </div>
-                <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-                    <a
-                        className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-                        href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                <h1 className="mb-6 text-5xl font-bold tracking-tight text-slate-900 dark:text-slate-100 md:text-6xl">
+                    Hey, I&apos;m a Senior Software Engineer
+                </h1>
+                <p className="mx-auto mb-8 max-w-3xl text-xl leading-relaxed text-slate-600 dark:text-slate-400 md:text-2xl">
+                    I specialize in{' '}
+                    <span className="font-semibold text-indigo-500 dark:text-indigo-400">
+                        Design Systems
+                    </span>{' '}
+                    and{' '}
+                    <span className="font-semibold text-indigo-500 dark:text-indigo-400">
+                        Front-end Development
+                    </span>
+                    , building scalable component libraries and beautiful user
+                    experiences.
+                </p>
+                <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-600 dark:text-slate-400 md:text-2xl">
+                    This is where I share my learnings, insights, and
+                    explorations in modern web development, component
+                    architecture, and everything that makes great user
+                    interfaces.
+                </p>
+            </section>
+
+            <section className="mb-24 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+                {expertise.map((item) => (
+                    <Link
+                        key={item.title}
+                        href="/blog"
+                        className="rounded-2xl border border-slate-300/70 bg-slate-100/70 px-6 py-7 transition-colors hover:bg-white dark:border-slate-700/60 dark:bg-slate-800/70 dark:hover:bg-slate-800"
                     >
-                        <Image
-                            className="dark:invert"
-                            src="/vercel.svg"
-                            alt="Vercel logomark"
-                            width={16}
-                            height={16}
-                        />
-                        Deploy Now
-                    </a>
-                    <a
-                        className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-                        href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Documentation
-                    </a>
+                        <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-slate-200 text-2xl text-indigo-500 dark:bg-slate-700/60 dark:text-indigo-400">
+                            <span>{item.icon}</span>
+                        </div>
+                        <h2 className="mb-3 text-3xl font-bold leading-tight text-slate-900 dark:text-slate-100">
+                            {item.title}
+                        </h2>
+                        <p className="text-lg text-slate-600 dark:text-slate-400">
+                            {item.description}
+                        </p>
+                    </Link>
+                ))}
+            </section>
+
+            <section>
+                <div className="mb-4 flex items-center gap-4">
+                    <h2 className="text-5xl font-bold text-slate-900 dark:text-slate-100 md:text-6xl">
+                        Featured Posts
+                    </h2>
+                    <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-full bg-indigo-500 px-3 text-xl font-semibold text-slate-950">
+                        {latestPosts.length}
+                    </span>
                 </div>
-            </main>
+                <p className="mb-10 text-xl text-slate-600 dark:text-slate-400 md:text-2xl">
+                    Latest insights on design systems, component architecture,
+                    and front-end development
+                </p>
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {latestPosts.map((post, index) => (
+                        <BlogCard key={post.slug} post={post} index={index} />
+                    ))}
+                </div>
+            </section>
         </div>
     );
 }
