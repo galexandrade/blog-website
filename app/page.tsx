@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { BlogCard } from '@/app/components/blog/blog-card';
 import { getLatestPosts } from '@/app/lib/blog';
 
@@ -30,8 +31,15 @@ export default function Home() {
     return (
         <div className="mx-auto w-full max-w-6xl px-4 pb-16 pt-12 sm:px-6">
             <section className="mx-auto mb-16 max-w-4xl text-center">
-                <div className="mx-auto mb-8 flex h-22 w-22 items-center justify-center rounded-full bg-gradient-to-br from-indigo-400 to-slate-500 text-4xl font-semibold text-slate-950">
-                    SE
+                <div className="mx-auto mb-8 h-32 w-32 overflow-hidden rounded-full">
+                    <Image
+                        src="/assets/profile.png"
+                        alt="Alex Andrade"
+                        width={128}
+                        height={128}
+                        className="h-full w-full object-cover"
+                        priority
+                    />
                 </div>
                 <h1 className="mb-6 text-5xl font-bold tracking-tight text-slate-900 dark:text-slate-100 md:text-6xl">
                     Hey, I&apos;m a Senior Software Engineer

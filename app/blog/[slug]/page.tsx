@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getAllPosts, getPostBySlug } from '@/app/lib/blog';
 import { formatDate } from '@/app/lib/utils';
 import { markdownToHtml } from '@/app/lib/markdown';
@@ -104,12 +105,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                 About the Author
                             </h2>
                             <div className="flex items-center gap-4">
-                                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-indigo-400 text-2xl font-semibold text-slate-950">
-                                    {authorName
-                                        .split(' ')
-                                        .slice(0, 2)
-                                        .map((name) => name[0])
-                                        .join('')}
+                                <div className="h-14 w-14 overflow-hidden rounded-full">
+                                    <Image
+                                        src="/assets/profile.png"
+                                        alt={authorName}
+                                        width={56}
+                                        height={56}
+                                        className="h-full w-full object-cover"
+                                    />
                                 </div>
                                 <div>
                                     <p className="text-2xl font-semibold text-slate-900 dark:text-slate-100">
