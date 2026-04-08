@@ -52,7 +52,8 @@ export default function Home() {
         {
             title: 'Resume',
             description: 'My professional experience and skills at a glance.',
-            icon: <FileText size={22} />
+            icon: <FileText size={22} />,
+            link: 'https://drive.google.com/file/d/1Ccov2_3eJLFm6pTUVwJqr3USW5G7vl4e/view?usp=sharing'
         },
         {
             title: 'LinkedIn',
