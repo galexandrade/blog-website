@@ -12,7 +12,7 @@ export function Header() {
                         {'</>'}
                     </div>
                     <div className="leading-tight">
-                        <p className="text-3xl font-bold text-slate-900 dark:text-slate-100">
+                        <p className="text-xl font-bold text-slate-900 dark:text-slate-100">
                             Alex Andrade - Blog
                         </p>
                         <p className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
@@ -21,7 +21,15 @@ export function Header() {
                     </div>
                 </Link>
 
-                <ThemeToggle />
+                <nav className="flex items-center gap-6">
+                    <Link
+                        href="/about"
+                        className="text-sm font-medium text-slate-600 underline-offset-4 transition-colors hover:text-slate-900 hover:underline dark:text-slate-400 dark:hover:text-slate-100"
+                    >
+                        About
+                    </Link>
+                    <ThemeToggle />
+                </nav>
             </div>
         </header>
     );

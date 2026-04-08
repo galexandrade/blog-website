@@ -35,7 +35,7 @@ export default async function AboutPage() {
                         className="markdown-content prose prose-slate dark:prose-invert max-w-none text-[1.06rem] leading-8
                             prose-h1:mt-16 prose-h1:mb-7 prose-h1:text-4xl prose-h1:font-bold prose-h2:mt-14 prose-h2:mb-6 prose-h2:text-3xl prose-h2:font-bold prose-h3:mt-10 prose-h3:mb-4 prose-h3:text-2xl prose-h3:font-semibold
                             prose-headings:tracking-tight prose-headings:text-slate-900 dark:prose-headings:text-slate-100
-                            prose-p:my-6 prose-p:text-slate-700 dark:prose-p:text-slate-200 prose-li:my-2 prose-a:text-indigo-600 dark:prose-a:text-indigo-300 prose-a:no-underline hover:prose-a:underline
+                            prose-p:my-6 prose-p:text-slate-700 dark:prose-p:text-slate-200 prose-li:my-2 prose-a:text-indigo-600 dark:prose-a:text-indigo-300 prose-a:no-underline prose-a:hover:underline prose-a:hover:text-indigo-500 dark:prose-a:hover:text-indigo-200
                             prose-strong:text-slate-900 dark:prose-strong:text-slate-100 prose-strong:font-semibold
                             prose-code:rounded prose-code:bg-slate-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-indigo-700 dark:prose-code:bg-slate-700/60 dark:prose-code:text-indigo-200 prose-code:before:content-none prose-code:after:content-none
                             prose-pre:my-8 prose-pre:rounded-xl prose-pre:border prose-pre:border-slate-300 prose-pre:bg-slate-950 prose-pre:px-5 prose-pre:py-4 prose-pre:text-slate-100 dark:prose-pre:border-slate-700

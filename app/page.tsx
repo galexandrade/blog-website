@@ -115,12 +115,12 @@ export default function Home() {
                             target: '_blank',
                             rel: 'noopener noreferrer'
                         })}
-                        className="rounded-2xl border border-slate-300/70 bg-slate-100/70 px-6 py-7 transition-colors hover:bg-white dark:border-slate-700/60 dark:bg-slate-800/70 dark:hover:bg-slate-800"
+                        className="rounded-2xl border border-slate-300/70 bg-slate-100/70 px-6 py-7 transition-colors hover:bg-white dark:border-slate-700 dark:bg-slate-800/70 dark:hover:bg-slate-800"
                     >
                         <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-slate-200 text-indigo-500 dark:bg-slate-700/60 dark:text-indigo-400">
                             {item.icon}
                         </div>
-                        <h2 className="mb-3 text-3xl font-bold leading-tight text-slate-900 dark:text-slate-100">
+                        <h2 className="mb-3 text-xl font-bold leading-tight text-slate-900 dark:text-slate-100">
                             {item.title}
                         </h2>
                         <p className="text-lg text-slate-600 dark:text-slate-400">

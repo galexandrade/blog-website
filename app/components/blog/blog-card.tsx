@@ -24,7 +24,7 @@ export function BlogCard({ post, index = 0 }: BlogCardProps) {
         >
             <Link
                 href={`/blog/${post.slug}`}
-                className="flex h-full flex-col rounded-2xl border border-slate-300/70 bg-slate-100/70 p-6 transition-colors hover:bg-white dark:border-slate-700/60 dark:bg-slate-800/70 dark:hover:bg-slate-800"
+                className="flex h-full flex-col rounded-2xl border border-slate-300/70 bg-slate-100/70 p-6 transition-colors hover:bg-white dark:border-slate-700 dark:bg-slate-800/70 dark:hover:bg-slate-800"
             >
                 <div className="mb-4 flex items-center gap-4 text-sm text-slate-600 dark:text-slate-400">
                     <time dateTime={post.frontmatter.date}>
