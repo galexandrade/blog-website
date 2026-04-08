@@ -19,7 +19,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://alexandrade.dev';
 export const metadata: Metadata = {
     metadataBase: new URL(siteUrl),
     title: {
-        default: 'Alex Andrade - Senior Software Engineer',
+        default: 'Alex Andrade - Senior Design Engineer',
         template: '%s | Alex Andrade'
     },
     description:
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         siteName: 'Alex Andrade',
         type: 'website',
         locale: 'en_US',
-        title: 'Alex Andrade - Senior Software Engineer',
+        title: 'Alex Andrade - Senior Design Engineer',
         description:
             'Personal blog and portfolio showcasing expertise in Design Systems, React, and TypeScript',
         images: [
@@ -36,13 +36,13 @@ export const metadata: Metadata = {
                 url: '/assets/profile.png',
                 width: 1200,
                 height: 630,
-                alt: 'Alex Andrade - Senior Software Engineer'
+                alt: 'Alex Andrade - Senior Design Engineer'
             }
         ]
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Alex Andrade - Senior Software Engineer',
+        title: 'Alex Andrade - Senior Design Engineer',
         description:
             'Personal blog and portfolio showcasing expertise in Design Systems, React, and TypeScript',
         images: ['/assets/profile.png']

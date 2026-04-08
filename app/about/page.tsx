@@ -6,11 +6,11 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'About',
     description:
-        'Learn more about Alex Andrade, Senior Software Engineer specializing in Design Systems',
+        'Learn more about Alex Andrade, Senior Design Engineer specializing in Design Systems',
     openGraph: {
         title: 'About | Alex Andrade',
         description:
-            'Learn more about Alex Andrade, Senior Software Engineer specializing in Design Systems',
+            'Learn more about Alex Andrade, Senior Design Engineer specializing in Design Systems',
         type: 'profile',
         url: '/about',
         images: [
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'About | Alex Andrade',
         description:
-            'Learn more about Alex Andrade, Senior Software Engineer specializing in Design Systems',
+            'Learn more about Alex Andrade, Senior Design Engineer specializing in Design Systems',
         images: ['/assets/profile.png']
     }
 };
