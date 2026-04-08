@@ -48,7 +48,7 @@ function rehypeCodeLanguageBadge() {
 export async function markdownToHtml(markdown: string): Promise<string> {
     const processedContent = await remark()
         .use(remarkRehype)
-        .use(rehypeHighlight, { ignoreMissing: true })
+        .use(rehypeHighlight)
         .use(rehypeCodeLanguageBadge)
         .use(rehypeStringify)
         .process(markdown);
