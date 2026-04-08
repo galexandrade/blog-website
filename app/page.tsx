@@ -1,30 +1,71 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { BookOpen, FileText } from 'lucide-react';
+
+function LinkedInIcon({ size = 22 }: { size?: number }) {
+    return (
+        <svg
+            width={size}
+            height={size}
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+        >
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
+        </svg>
+    );
+}
+
+function SevenIcon({ size = 22 }: { size?: number }) {
+    return (
+        <svg
+            width={size}
+            height={size}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3.4"
+            strokeLinecap="square"
+            strokeLinejoin="round"
+            aria-hidden="true"
+        >
+            <path d="M3.8 6.5H20.2" />
+            <path d="M20.2 6.5L10.6 19" />
+        </svg>
+    );
+}
 import { BlogCard } from '@/app/components/blog/blog-card';
 import { getLatestPosts } from '@/app/lib/blog';
 
 export default function Home() {
     const latestPosts = getLatestPosts(3);
-    const expertise = [
+    const resources = [
         {
-            title: 'React & TypeScript',
-            description: 'Building robust component libraries',
-            icon: '</>'
+            title: 'Blog posts',
+            description:
+                'Articles on design systems, component architecture, and front-end development.',
+            icon: <BookOpen size={22} />,
+            link: '/blog'
         },
         {
-            title: 'Design Systems',
-            description: 'Creating scalable UI architectures',
-            icon: '◔'
+            title: 'Resume',
+            description: 'My professional experience and skills at a glance.',
+            icon: <FileText size={22} />
         },
         {
-            title: 'Component Architecture',
-            description: 'Patterns & best practices',
-            icon: '◫'
+            title: 'LinkedIn',
+            description:
+                'Connect with me on LinkedIn and see my professional background.',
+            icon: <LinkedInIcon size={22} />,
+            link: 'https://www.linkedin.com/in/palexandrade'
         },
         {
-            title: 'Modern CSS',
-            description: 'Advanced styling techniques',
-            icon: '✧'
+            title: 'Sous Chef',
+            description:
+                "I'm building Sous Chef, 7shifts design system. Check it out!",
+            icon: <SevenIcon size={22} />
         }
     ];
 
@@ -65,14 +106,18 @@ export default function Home() {
             </section>
 
             <section className="mb-24 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-                {expertise.map((item) => (
+                {resources.map((item) => (
                     <Link
                         key={item.title}
-                        href="/blog"
+                        href={item.link ?? '#'}
+                        {...(item.link?.startsWith('https') && {
+                            target: '_blank',
+                            rel: 'noopener noreferrer'
+                        })}
                         className="rounded-2xl border border-slate-300/70 bg-slate-100/70 px-6 py-7 transition-colors hover:bg-white dark:border-slate-700/60 dark:bg-slate-800/70 dark:hover:bg-slate-800"
                     >
-                        <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-slate-200 text-2xl text-indigo-500 dark:bg-slate-700/60 dark:text-indigo-400">
-                            <span>{item.icon}</span>
+                        <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-slate-200 text-indigo-500 dark:bg-slate-700/60 dark:text-indigo-400">
+                            {item.icon}
                         </div>
                         <h2 className="mb-3 text-3xl font-bold leading-tight text-slate-900 dark:text-slate-100">
                             {item.title}
