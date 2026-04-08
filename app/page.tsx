@@ -13,7 +13,7 @@ export default function Home() {
         {
             title: 'Blog posts',
             description:
-                'Articles on design systems, component architecture, and front-end development.',
+                'Articles and case-studies on design systems, architecture, and front-end development.',
             icon: <BookA size={22} />,
             link: '/blog'
         },
@@ -44,7 +44,7 @@ export default function Home() {
             <section className="mx-auto mb-16 max-w-4xl text-center">
                 <div className="mx-auto mb-8 h-32 w-32 overflow-hidden rounded-full">
                     <Image
-                        src="/assets/profile.png"
+                        src="/assets/profile-2.png"
                         alt="Alex Andrade"
                         width={128}
                         height={128}
@@ -53,19 +53,23 @@ export default function Home() {
                     />
                 </div>
                 <h1 className="mb-6 text-5xl font-bold tracking-tight text-slate-900 dark:text-slate-100 md:text-6xl">
-                    Hey, I&apos;m a Senior Design Engineer
+                    Hey! I&apos;m Alex, a Senior Design Engineer
                 </h1>
                 <p className="mx-auto mb-8 max-w-3xl text-xl leading-relaxed text-slate-600 dark:text-slate-400 md:text-2xl">
                     I specialize in{' '}
                     <span className="font-semibold text-indigo-500 dark:text-indigo-400">
                         Design Systems
-                    </span>{' '}
+                    </span>
                     and{' '}
                     <span className="font-semibold text-indigo-500 dark:text-indigo-400">
                         Front-end Development
                     </span>
                     , building scalable component libraries and beautiful user
-                    experiences.
+                    experiences. I also founded the{' '}
+                    <span className="font-semibold text-indigo-500 dark:text-indigo-400">
+                        Saskatoon React Meetup
+                    </span>{' '}
+                    to foster frontend innovation in the prairies.
                 </p>
                 <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-600 dark:text-slate-400 md:text-2xl">
                     This is where I share my learnings, insights, and
