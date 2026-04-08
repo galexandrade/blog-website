@@ -14,10 +14,39 @@ const geistMono = Geist_Mono({
     subsets: ['latin']
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://alexandrade.dev';
+
 export const metadata: Metadata = {
-    title: 'Alex Andrade - Senior Software Engineer',
+    metadataBase: new URL(siteUrl),
+    title: {
+        default: 'Alex Andrade - Senior Software Engineer',
+        template: '%s | Alex Andrade'
+    },
     description:
-        'Personal blog and portfolio showcasing expertise in Design Systems, React, and TypeScript'
+        'Personal blog and portfolio showcasing expertise in Design Systems, React, and TypeScript',
+    openGraph: {
+        siteName: 'Alex Andrade',
+        type: 'website',
+        locale: 'en_US',
+        title: 'Alex Andrade - Senior Software Engineer',
+        description:
+            'Personal blog and portfolio showcasing expertise in Design Systems, React, and TypeScript',
+        images: [
+            {
+                url: '/assets/profile.png',
+                width: 1200,
+                height: 630,
+                alt: 'Alex Andrade - Senior Software Engineer'
+            }
+        ]
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Alex Andrade - Senior Software Engineer',
+        description:
+            'Personal blog and portfolio showcasing expertise in Design Systems, React, and TypeScript',
+        images: ['/assets/profile.png']
+    }
 };
 
 export default function RootLayout({

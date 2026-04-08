@@ -1,5 +1,19 @@
+import type { Metadata } from 'next';
 import { BlogCard } from '@/app/components/blog/blog-card';
 import { getAllPosts } from '@/app/lib/blog';
+
+export const metadata: Metadata = {
+    title: 'Blog',
+    description:
+        'Latest insights on design systems, component architecture, and front-end development',
+    openGraph: {
+        title: 'Blog | Alex Andrade',
+        description:
+            'Latest insights on design systems, component architecture, and front-end development',
+        type: 'website',
+        url: '/blog'
+    }
+};
 
 export default function BlogPage() {
     const posts = getAllPosts();

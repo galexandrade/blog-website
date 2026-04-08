@@ -4,9 +4,31 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'About - Alex Andrade',
+    title: 'About',
     description:
-        'Learn more about Alex Andrade, Senior Software Engineer specializing in Design Systems'
+        'Learn more about Alex Andrade, Senior Software Engineer specializing in Design Systems',
+    openGraph: {
+        title: 'About | Alex Andrade',
+        description:
+            'Learn more about Alex Andrade, Senior Software Engineer specializing in Design Systems',
+        type: 'profile',
+        url: '/about',
+        images: [
+            {
+                url: '/assets/profile.png',
+                width: 1200,
+                height: 630,
+                alt: 'Alex Andrade'
+            }
+        ]
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'About | Alex Andrade',
+        description:
+            'Learn more about Alex Andrade, Senior Software Engineer specializing in Design Systems',
+        images: ['/assets/profile.png']
+    }
 };
 
 export default async function AboutPage() {

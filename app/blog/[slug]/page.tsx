@@ -29,6 +29,8 @@ export async function generateMetadata({
         };
     }
 
+    const ogImage = post.frontmatter.image ?? '/assets/profile.png';
+
     return {
         title: post.frontmatter.title,
         description: post.frontmatter.description,
@@ -36,7 +38,23 @@ export async function generateMetadata({
             title: post.frontmatter.title,
             description: post.frontmatter.description,
             type: 'article',
-            publishedTime: post.frontmatter.date
+            publishedTime: post.frontmatter.date,
+            authors: [post.frontmatter.author ?? 'Alex Andrade'],
+            tags: post.frontmatter.tags,
+            images: [
+                {
+                    url: ogImage,
+                    width: 1200,
+                    height: 630,
+                    alt: post.frontmatter.title
+                }
+            ]
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: post.frontmatter.title,
+            description: post.frontmatter.description,
+            images: [ogImage]
         }
     };
 }
