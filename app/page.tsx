@@ -65,7 +65,8 @@ export default function Home() {
             title: 'Sous Chef',
             description:
                 "I'm building Sous Chef, 7shifts design system. Check it out!",
-            icon: <SevenIcon size={22} />
+            icon: <SevenIcon size={22} />,
+            link: 'https://sous-chef.7shifts.software/'
         }
     ];
 
@@ -83,7 +84,7 @@ export default function Home() {
                     />
                 </div>
                 <h1 className="mb-6 text-5xl font-bold tracking-tight text-slate-900 dark:text-slate-100 md:text-6xl">
-                    Hey, I&apos;m a Senior Software Engineer
+                    Hey, I&apos;m a Senior Design Engineer
                 </h1>
                 <p className="mx-auto mb-8 max-w-3xl text-xl leading-relaxed text-slate-600 dark:text-slate-400 md:text-2xl">
                     I specialize in{' '}
@@ -134,7 +135,7 @@ export default function Home() {
                     <h2 className="text-5xl font-bold text-slate-900 dark:text-slate-100 md:text-6xl">
                         Featured Posts
                     </h2>
-                    <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-full bg-indigo-500 px-3 text-xl font-semibold text-slate-950">
+                    <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-full bg-indigo-600 px-3 text-xl font-semibold !text-white">
                         {latestPosts.length}
                     </span>
                 </div>

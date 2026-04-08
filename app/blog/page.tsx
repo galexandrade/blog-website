@@ -10,7 +10,7 @@ export default function BlogPage() {
                 <h1 className="text-5xl font-bold text-slate-900 dark:text-slate-100 md:text-6xl">
                     Featured Posts
                 </h1>
-                <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-full bg-indigo-500 px-3 text-xl font-semibold text-slate-950">
+                <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-full bg-indigo-600 px-3 text-xl font-semibold !text-white">
                     {posts.length}
                 </span>
             </div>

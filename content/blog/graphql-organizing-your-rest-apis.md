@@ -2,7 +2,7 @@
 path: graphql-as-rest-api-data-layer
 date: 2020-07-06T00:24:47.596Z
 title: GraphQL organizing your REST APIs
-description: GraphQL organizing your REST APIs
+description: Use GraphQL as a data layer to simplify and organize REST API consumption.
 tags:
     - GraphQL
     - REST API

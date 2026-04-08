@@ -2,7 +2,7 @@
 path: visual-tests-using-chromatic
 date: 2021-10-27T00:39:38.110Z
 title: Visual tests using Chromatic
-description: Visual tests using Chromatic
+description: Prevent unintended UI regressions with visual testing in Chromatic and Storybook.
 featured: true
 tags:
     - Testing
