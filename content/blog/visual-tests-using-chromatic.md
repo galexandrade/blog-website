@@ -8,6 +8,7 @@ tags:
     - Testing
     - Chromatic
     - Storybook
+image: /assets/comparison.png
 ---
 
 ![Visual tests using Chromatic](/assets/comparison.png 'Visual tests using Chromatic')

@@ -7,6 +7,7 @@ tags:
     - GraphQL
     - REST API
     - Architecture
+image: /assets/heroesmovies.png
 ---
 
 In this blog post, you will learn how you can fetch related data from REST endpoints without ending up with several HTTP requests on the front-end. We will use GraphQL as a REST API data layer.

@@ -11,6 +11,7 @@ tags:
     - React
     - Hooks
     - Libraries
+image: /assets/hooks.jpg
 ---
 
 We will take a look at some of the most common libraries, seeing how they switched to using hooks, comparing what the code looked like before and after the switch.

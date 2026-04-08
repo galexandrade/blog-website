@@ -15,10 +15,13 @@ function normalizeFrontmatter(data: BlogPostFrontmatter): BlogPostFrontmatter {
         ? data.tags.map((tag) => String(tag)).filter(Boolean)
         : undefined;
 
+    const image = data.image ? String(data.image) : undefined;
+
     return {
         ...data,
         date: normalizedDate,
-        tags
+        tags,
+        image
     };
 }
 
@@ -34,12 +37,16 @@ export function getAllPosts(): BlogPost[] {
             const fileContents = fs.readFileSync(fullPath, 'utf8');
             const { data, content } = matter(fileContents);
             const readingTimeResult = readingTime(content);
+            const frontmatter = normalizeFrontmatter(
+                data as BlogPostFrontmatter
+            );
 
             return {
                 slug,
-                frontmatter: normalizeFrontmatter(data as BlogPostFrontmatter),
+                frontmatter,
                 content,
-                readingTime: readingTimeResult.text
+                readingTime: readingTimeResult.text,
+                coverImage: frontmatter.image
             };
         })
         .sort((a, b) => {
@@ -59,12 +66,14 @@ export function getPostBySlug(slug: string): BlogPost | null {
         const fileContents = fs.readFileSync(fullPath, 'utf8');
         const { data, content } = matter(fileContents);
         const readingTimeResult = readingTime(content);
+        const frontmatter = normalizeFrontmatter(data as BlogPostFrontmatter);
 
         return {
             slug,
-            frontmatter: normalizeFrontmatter(data as BlogPostFrontmatter),
+            frontmatter,
             content,
-            readingTime: readingTimeResult.text
+            readingTime: readingTimeResult.text,
+            coverImage: frontmatter.image
         };
     } catch {
         return null;

@@ -8,6 +8,7 @@ description: >-
 tags:
     - Legacy Code
     - Architecture
+image: /assets/screen-shot-2020-03-17-at-3.22.59-pm.png
 ---
 
 Technology is constantly evolving, and that makes the code we write today the one we are going to rewrite tomorrow.

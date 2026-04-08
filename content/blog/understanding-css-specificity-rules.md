@@ -10,6 +10,7 @@ tags:
     - CSS
     - Web Development
     - Frontend
+image: /assets/important.png
 ---
 
 ![Important](/assets/important.png 'CSS specificity rules are tricky to understand. In this blog post we will learn how to master it.')

@@ -8,6 +8,7 @@ tags:
     - Career
     - Productivity
     - Personal Growth
+image: /assets/10x-growth.webp
 ---
 
 How to grow in a year we see everything slowing down for the first time in history? In this blog post, I will share what I learned and how to measure growth properly.

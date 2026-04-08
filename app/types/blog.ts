@@ -3,6 +3,7 @@ export interface BlogPostFrontmatter {
     date: string;
     title: string;
     description: string;
+    image?: string;
     featured?: boolean;
     tags?: string[];
     author?: string;
@@ -14,4 +15,5 @@ export interface BlogPost {
     frontmatter: BlogPostFrontmatter;
     content: string;
     readingTime: string;
+    coverImage?: string;
 }
