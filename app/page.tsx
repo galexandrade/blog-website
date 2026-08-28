@@ -21,7 +21,7 @@ export default function Home() {
             title: 'Resume',
             description: 'My professional experience and skills at a glance.',
             icon: <IconPDF size={22} />,
-            link: 'https://drive.google.com/file/d/1Ccov2_3eJLFm6pTUVwJqr3USW5G7vl4e/view?usp=sharing'
+            link: 'https://app.rezme.io/alex-andrade'
         },
         {
             title: 'LinkedIn',
@@ -53,7 +53,7 @@ export default function Home() {
                     />
                 </div>
                 <h1 className="mb-6 text-5xl font-bold tracking-tight text-slate-900 dark:text-slate-100 md:text-6xl">
-                    Hey! I&apos;m Alex, a Senior Design Engineer
+                    Hey! I&apos;m Alex, a Senior Frontend Engineer
                 </h1>
                 <p className="mx-auto mb-8 max-w-3xl text-xl leading-relaxed text-slate-600 dark:text-slate-400 md:text-2xl">
                     I specialize in{' '}

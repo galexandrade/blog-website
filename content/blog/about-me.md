@@ -7,9 +7,9 @@ description: More about me and what I do.
 
 ## 👋 Hi, I'm Alex Andrade
 
-_Senior Design Engineer | Systems Architect | Community Builder_
+_Senior Frontend Engineer | Systems Architect | Community Builder_
 
-I’m a Senior Design Engineer currently living in [Saskatoon, Canada - the land of living skies](https://www.instagram.com/visitsaskatoon/). Originally from Brazil, I moved here in 2019 to join the mission at [7shifts](https://www.7shifts.com/), where we build team management software that empower restaurant managers to reclaim their time.
+I’m a Senior Frontend Engineer currently living in [Saskatoon, Canada - the land of living skies](https://www.instagram.com/visitsaskatoon/). Originally from Brazil, I moved here in 2019 to join the mission at [7shifts](https://www.7shifts.com/), where we build team management software that empower restaurant managers to reclaim their time.
 
 ![Me at the heart of Saskatoon](/assets/personal-image-2.png 'Me at the heart of Saskatoon')
 
