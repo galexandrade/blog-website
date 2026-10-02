@@ -1,4 +1,5 @@
 import { remark } from 'remark';
+import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
@@ -47,6 +48,7 @@ function rehypeCodeLanguageBadge() {
 
 export async function markdownToHtml(markdown: string): Promise<string> {
     const processedContent = await remark()
+        .use(remarkGfm)
         .use(remarkRehype)
         .use(rehypeHighlight)
         .use(rehypeCodeLanguageBadge)

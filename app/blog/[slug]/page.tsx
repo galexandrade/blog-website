@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ArrowLeft } from 'lucide-react';
 import { getAllPosts, getPostBySlug } from '@/app/lib/blog';
 import { formatDate } from '@/app/lib/utils';
 import { markdownToHtml } from '@/app/lib/markdown';
@@ -80,9 +81,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="mx-auto max-w-4xl">
                 <Link
                     href="/blog"
-                    className="mb-8 inline-flex text-xl font-medium text-indigo-600 transition-colors hover:text-indigo-500 dark:text-indigo-300 dark:hover:text-indigo-200"
+                    className="mb-8 inline-flex items-center gap-2 text-xl font-medium text-indigo-600 transition-colors hover:text-indigo-500 dark:text-indigo-300 dark:hover:text-indigo-200"
                 >
-                    ← Back to all posts
+                    <ArrowLeft size={22} aria-hidden="true" />
+                    Back to all posts
                 </Link>
 
                 <header className="mb-8 mt-6">
