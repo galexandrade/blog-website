@@ -4,10 +4,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { formatDate } from '@/app/lib/utils';
-import { BlogPost } from '@/app/types/blog';
+import { BlogPostSummary } from '@/app/types/blog';
 
 interface BlogCardProps {
-    post: BlogPost;
+    post: BlogPostSummary;
     index?: number;
 }
 

@@ -2,13 +2,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { BookA } from 'lucide-react';
 import { BlogCard } from '@/app/components/blog/blog-card';
-import { getLatestPosts } from '@/app/lib/blog';
+import { getLatestPosts, toPostSummary } from '@/app/lib/blog';
 import IconSevenShifts from './components/ui/IconSevenShifts';
 import IconLinkedIn from './components/ui/IconLinkedIn';
 import IconPDF from './components/ui/IconPDF';
 
 export default function Home() {
-    const latestPosts = getLatestPosts(3);
+    const latestPosts = getLatestPosts(3).map(toPostSummary);
     const resources = [
         {
             title: 'Blog posts',

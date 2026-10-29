@@ -17,3 +17,6 @@ export interface BlogPost {
     readingTime: string;
     coverImage?: string;
 }
+
+// Everything a listing needs, without the markdown body
+export type BlogPostSummary = Omit<BlogPost, 'content'>;
