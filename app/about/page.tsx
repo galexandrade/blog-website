@@ -2,6 +2,8 @@ import { getAboutContent } from '@/app/lib/blog';
 import { markdownToHtml } from '@/app/lib/markdown';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { JsonLd } from '@/app/components/seo/json-ld';
+import { absoluteUrl, personId, websiteId } from '@/app/lib/site';
 
 export const metadata: Metadata = {
     title: 'About',
@@ -42,6 +44,19 @@ export default async function AboutPage() {
 
     return (
         <div className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6">
+            <JsonLd
+                data={{
+                    '@context': 'https://schema.org',
+                    '@type': 'ProfilePage',
+                    '@id': `${absoluteUrl('/about')}#profilepage`,
+                    url: absoluteUrl('/about'),
+                    name: 'About | Alex Andrade',
+                    description:
+                        'Learn more about Alex Andrade, Senior Frontend Engineer specializing in Design Systems',
+                    isPartOf: { '@id': websiteId },
+                    mainEntity: { '@id': personId }
+                }}
+            />
             <div className="mx-auto max-w-4xl">
                 <header className="mb-12">
                     <h1 className="mb-4 text-5xl font-bold tracking-tight text-slate-900 dark:text-slate-100 md:text-6xl">
