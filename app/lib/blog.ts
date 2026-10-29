@@ -2,7 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
-import { BlogPost, BlogPostFrontmatter } from '@/app/types/blog';
+import {
+    BlogPost,
+    BlogPostFrontmatter,
+    BlogPostSummary
+} from '@/app/types/blog';
 
 const postsDirectory = path.join(process.cwd(), 'content/blog');
 
@@ -58,6 +62,17 @@ export function getAllPosts(): BlogPost[] {
         });
 
     return allPostsData;
+}
+
+// Strip the body before passing posts to client components; otherwise the
+// full markdown of every post is serialized into the listing page's HTML
+export function toPostSummary(post: BlogPost): BlogPostSummary {
+    return {
+        slug: post.slug,
+        frontmatter: post.frontmatter,
+        readingTime: post.readingTime,
+        coverImage: post.coverImage
+    };
 }
 
 export function getPostBySlug(slug: string): BlogPost | null {

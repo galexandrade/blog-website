@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { BlogCard } from '@/app/components/blog/blog-card';
-import { getAllPosts } from '@/app/lib/blog';
+import { getAllPosts, toPostSummary } from '@/app/lib/blog';
 
 export const metadata: Metadata = {
     title: 'Blog',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
-    const posts = getAllPosts();
+    const posts = getAllPosts().map(toPostSummary);
 
     return (
         <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
