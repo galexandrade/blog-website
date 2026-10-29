@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/app/components/layout/header';
 import { Footer } from '@/app/components/layout/footer';
+import { JsonLd } from '@/app/components/seo/json-ld';
+import { person, siteUrl, website } from '@/app/lib/site';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -13,8 +15,6 @@ const geistMono = Geist_Mono({
     variable: '--font-geist-mono',
     subsets: ['latin']
 });
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://alexandrade.dev';
 
 export const metadata: Metadata = {
     metadataBase: new URL(siteUrl),
@@ -64,6 +64,12 @@ export default function RootLayout({
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `(function(){try{var stored=localStorage.getItem('theme');var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;var isDark=stored?stored==='dark':prefersDark;document.documentElement.classList.toggle('dark',isDark);}catch(e){}})();`
+                    }}
+                />
+                <JsonLd
+                    data={{
+                        '@context': 'https://schema.org',
+                        '@graph': [person, website]
                     }}
                 />
             </head>

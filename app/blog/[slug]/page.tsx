@@ -6,6 +6,8 @@ import { getAllPosts, getPostBySlug } from '@/app/lib/blog';
 import { formatDate } from '@/app/lib/utils';
 import { markdownToHtml } from '@/app/lib/markdown';
 import type { Metadata } from 'next';
+import { JsonLd } from '@/app/components/seo/json-ld';
+import { absoluteUrl, personId, websiteId } from '@/app/lib/site';
 
 interface BlogPostPageProps {
     params: Promise<{ slug: string }>;
@@ -75,9 +77,30 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const authorName = post.frontmatter.author ?? 'Alex Andrade';
     const authorRole =
         post.frontmatter.authorRole ?? 'Design Systems & Front-end';
+    const postUrl = absoluteUrl(`/blog/${post.slug}`);
 
     return (
         <article className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6">
+            <JsonLd
+                data={{
+                    '@context': 'https://schema.org',
+                    '@type': 'BlogPosting',
+                    '@id': `${postUrl}#blogposting`,
+                    mainEntityOfPage: postUrl,
+                    url: postUrl,
+                    headline: post.frontmatter.title,
+                    description: post.frontmatter.description,
+                    datePublished: post.frontmatter.date,
+                    image: absoluteUrl(
+                        post.frontmatter.image ?? '/assets/profile.png'
+                    ),
+                    keywords: post.frontmatter.tags?.join(', '),
+                    inLanguage: 'en-US',
+                    author: { '@id': personId },
+                    publisher: { '@id': personId },
+                    isPartOf: { '@id': websiteId }
+                }}
+            />
             <div className="mx-auto max-w-4xl">
                 <Link
                     href="/blog"
