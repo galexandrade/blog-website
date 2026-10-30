@@ -1,13 +1,17 @@
 import Link from 'next/link';
 import { Wordmark } from '@/app/components/brand/logo';
-import { socialLinks } from '@/app/lib/site';
+import { buttondownUsername, socialLinks } from '@/app/lib/site';
 
 const siteLinks = [
     { label: 'Writing', href: '/blog' },
     { label: 'Work', href: '/#work' },
     { label: 'About', href: '/about' },
     { label: 'System', href: '/system' },
-    { label: 'RSS', href: '/rss.xml' }
+    { label: 'RSS', href: '/rss.xml' },
+    // Points at the homepage signup, which only exists once configured
+    ...(buttondownUsername
+        ? [{ label: 'Newsletter', href: '/#newsletter' }]
+        : [])
 ];
 
 const elsewhere = [

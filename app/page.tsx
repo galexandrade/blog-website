@@ -5,6 +5,7 @@ import { FeaturedPost, PostList } from '@/app/components/blog/post-list';
 import { ButtonLink } from '@/app/components/brand/button-link';
 import { Eyebrow } from '@/app/components/brand/eyebrow';
 import { SectionHeading } from '@/app/components/brand/section-heading';
+import { NewsletterSignup } from '@/app/components/newsletter/newsletter-signup';
 import { getHomepagePosts, toPostSummary } from '@/app/lib/blog';
 import { socialLinks } from '@/app/lib/site';
 
@@ -185,6 +186,11 @@ export default function Home() {
                     </div>
                 </div>
             </section>
+
+            <NewsletterSignup
+                id="newsletter"
+                className="mb-20 scroll-mt-24 md:mb-28"
+            />
 
             <section className="mb-20 border border-foreground p-8 md:mb-28 md:p-12">
                 <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
