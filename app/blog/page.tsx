@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/app/lib/metadata';
 import { PostList } from '@/app/components/blog/post-list';
 import { Eyebrow } from '@/app/components/brand/eyebrow';
 import { getAllPosts, toPostSummary } from '@/app/lib/blog';
@@ -6,16 +7,11 @@ import { getAllPosts, toPostSummary } from '@/app/lib/blog';
 const description =
     'Writing on design systems, AI and MCP for design systems, and frontend architecture.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+    path: '/blog',
     title: 'Writing',
-    description,
-    openGraph: {
-        title: 'Writing | Alex Andrade',
-        description,
-        type: 'website',
-        url: '/blog'
-    }
-};
+    description
+});
 
 export default function BlogPage() {
     const posts = getAllPosts().map(toPostSummary);

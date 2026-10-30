@@ -2,6 +2,7 @@ import { getAboutContent } from '@/app/lib/blog';
 import { markdownToHtml } from '@/app/lib/markdown';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/app/lib/metadata';
 import { JsonLd } from '@/app/components/seo/json-ld';
 import { ArrowUpRight } from 'lucide-react';
 import { ButtonLink } from '@/app/components/brand/button-link';
@@ -10,21 +11,12 @@ import { absoluteUrl, personId, socialLinks, websiteId } from '@/app/lib/site';
 const description =
     'Alex Andrade leads the design system team at 7shifts and created Sous Chef. How a frontend engineer from Brazil ended up leading a design system team in Saskatoon.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+    path: '/about',
     title: 'About',
     description,
-    openGraph: {
-        title: 'About | Alex Andrade',
-        description,
-        type: 'profile',
-        url: '/about'
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'About | Alex Andrade',
-        description
-    }
-};
+    ogType: 'profile'
+});
 
 export default async function AboutPage() {
     const aboutData = getAboutContent();

@@ -2,12 +2,25 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { getAllPosts, getPostBySlug } from '@/app/lib/blog';
+import {
+    getAllPosts,
+    getPostBySlug,
+    getPostModifiedDate
+} from '@/app/lib/blog';
 import { formatDate } from '@/app/lib/utils';
 import { markdownToHtml } from '@/app/lib/markdown';
 import type { Metadata } from 'next';
 import { JsonLd } from '@/app/components/seo/json-ld';
-import { absoluteUrl, personId, websiteId } from '@/app/lib/site';
+import {
+    absoluteUrl,
+    person,
+    personId,
+    postMarkdownPath,
+    postOgImagePath,
+    postPath,
+    siteName,
+    websiteId
+} from '@/app/lib/site';
 import { PostTags } from '@/app/components/blog/post-list';
 import { NewsletterSignup } from '@/app/components/newsletter/newsletter-signup';
 
@@ -37,11 +50,22 @@ export async function generateMetadata({
     return {
         title: post.frontmatter.title,
         description: post.frontmatter.description,
+        alternates: {
+            canonical: postPath(slug),
+            types: {
+                'application/rss+xml': '/rss.xml',
+                'text/markdown': postMarkdownPath(slug)
+            }
+        },
         openGraph: {
+            siteName,
+            locale: 'en_US',
+            url: postPath(slug),
             title: post.frontmatter.title,
             description: post.frontmatter.description,
             type: 'article',
             publishedTime: post.frontmatter.date,
+            modifiedTime: getPostModifiedDate(post),
             authors: [post.frontmatter.author ?? 'Alex Andrade'],
             tags: post.frontmatter.tags
         },
@@ -66,28 +90,62 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const authorRole =
         post.frontmatter.authorRole ??
         'Leads the design system team at 7shifts and created Sous Chef.';
-    const postUrl = absoluteUrl(`/blog/${post.slug}`);
+    const postUrl = absoluteUrl(postPath(post.slug));
+    // Named inline as well as by @id, so the author reads without resolving
+    // the graph in the layout
+    const author = { '@id': personId, name: person.name, url: person.url };
 
     return (
         <article className="mx-auto w-full max-w-6xl px-4 pb-24 pt-10 sm:px-6">
             <JsonLd
                 data={{
                     '@context': 'https://schema.org',
-                    '@type': 'BlogPosting',
-                    '@id': `${postUrl}#blogposting`,
-                    mainEntityOfPage: postUrl,
-                    url: postUrl,
-                    headline: post.frontmatter.title,
-                    description: post.frontmatter.description,
-                    datePublished: post.frontmatter.date,
-                    image: absoluteUrl(
-                        post.frontmatter.image ?? '/assets/profile.png'
-                    ),
-                    keywords: post.frontmatter.tags?.join(', '),
-                    inLanguage: 'en-US',
-                    author: { '@id': personId },
-                    publisher: { '@id': personId },
-                    isPartOf: { '@id': websiteId }
+                    '@graph': [
+                        {
+                            '@type': 'BlogPosting',
+                            '@id': `${postUrl}#blogposting`,
+                            mainEntityOfPage: postUrl,
+                            url: postUrl,
+                            headline: post.frontmatter.title,
+                            description: post.frontmatter.description,
+                            datePublished: post.frontmatter.date,
+                            dateModified: getPostModifiedDate(post),
+                            image: absoluteUrl(
+                                post.frontmatter.image ??
+                                    postOgImagePath(post.slug)
+                            ),
+                            keywords: post.frontmatter.tags?.join(', '),
+                            inLanguage: 'en-US',
+                            author,
+                            publisher: author,
+                            isPartOf: { '@id': websiteId },
+                            breadcrumb: { '@id': `${postUrl}#breadcrumb` }
+                        },
+                        {
+                            '@type': 'BreadcrumbList',
+                            '@id': `${postUrl}#breadcrumb`,
+                            itemListElement: [
+                                {
+                                    '@type': 'ListItem',
+                                    position: 1,
+                                    name: 'Home',
+                                    item: absoluteUrl('/')
+                                },
+                                {
+                                    '@type': 'ListItem',
+                                    position: 2,
+                                    name: 'Writing',
+                                    item: absoluteUrl('/blog')
+                                },
+                                {
+                                    '@type': 'ListItem',
+                                    position: 3,
+                                    name: post.frontmatter.title,
+                                    item: postUrl
+                                }
+                            ]
+                        }
+                    ]
                 }}
             />
             <div className="mx-auto max-w-3xl">
@@ -104,6 +162,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         <time dateTime={post.frontmatter.date}>
                             {formatDate(post.frontmatter.date)}
                         </time>
+                        {post.frontmatter.updated && (
+                            <>
+                                <span aria-hidden="true">·</span>
+                                <span>
+                                    Updated{' '}
+                                    <time dateTime={post.frontmatter.updated}>
+                                        {formatDate(post.frontmatter.updated)}
+                                    </time>
+                                </span>
+                            </>
+                        )}
                         <span aria-hidden="true">·</span>
                         <span>{post.readingTime}</span>
                         <span aria-hidden="true">·</span>

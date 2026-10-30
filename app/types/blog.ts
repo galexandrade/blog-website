@@ -3,6 +3,8 @@ import type { PillarSlug } from '@/app/lib/pillars';
 export interface BlogPostFrontmatter {
     path: string;
     date: string;
+    /** Last meaningful revision; feeds dateModified and the sitemap */
+    updated?: string;
     title: string;
     description: string;
     image?: string;

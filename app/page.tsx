@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { FeaturedPost } from '@/app/components/blog/post-list';
@@ -14,6 +15,19 @@ import {
 } from '@/app/lib/blog';
 import { projects } from '@/app/lib/projects';
 import { socialLinks } from '@/app/lib/site';
+
+export const metadata: Metadata = {
+    alternates: {
+        canonical: '/',
+        types: { 'application/rss+xml': '/rss.xml' }
+    },
+    openGraph: {
+        siteName: 'Alex Andrade',
+        type: 'website',
+        locale: 'en_US',
+        url: '/'
+    }
+};
 
 export default function Home() {
     const [latestPost] = getHomepagePosts(1).map(toPostSummary);
