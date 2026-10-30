@@ -27,6 +27,20 @@ export function absoluteUrl(path: string = '/'): string {
     return `${siteUrl}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
+export function postPath(slug: string): string {
+    return `/blog/${slug}`;
+}
+
+// Raw markdown of a post, for AI tools; rewritten to a route in next.config
+export function postMarkdownPath(slug: string): string {
+    return `${postPath(slug)}.md`;
+}
+
+// The generated Open Graph card, also the fallback image for structured data
+export function postOgImagePath(slug: string): string {
+    return `${postPath(slug)}/opengraph-image/card`;
+}
+
 export const personId = `${siteUrl}/#person`;
 export const websiteId = `${siteUrl}/#website`;
 

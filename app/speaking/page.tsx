@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/app/lib/metadata';
 import Image from 'next/image';
 import { ArrowRight, ArrowUpRight, Download } from 'lucide-react';
 import { ButtonLink } from '@/app/components/brand/button-link';
@@ -10,21 +11,18 @@ import {
     youtubeWatchUrl,
     type Talk
 } from '@/app/lib/talks';
-import { socialLinks } from '@/app/lib/site';
+import { JsonLd } from '@/app/components/seo/json-ld';
+import { absoluteUrl, personId, socialLinks } from '@/app/lib/site';
 import { bioText, headshot, speakerBios, wordCount } from '@/app/lib/speaker';
 
 const description =
     'Talks by Alex Andrade on design systems, AI and frontend architecture, from Saskatoon Dev Talks to Tech Tank Toronto. Recordings, topics and how to invite me.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+    path: '/speaking',
     title: 'Speaking',
-    description,
-    openGraph: {
-        title: 'Speaking | Alex Andrade',
-        description,
-        url: '/speaking'
-    }
-};
+    description
+});
 
 const dateFormat = new Intl.DateTimeFormat('en-US', {
     month: 'short',
@@ -35,6 +33,34 @@ const dateFormat = new Intl.DateTimeFormat('en-US', {
 export default function SpeakingPage() {
     return (
         <div className="mx-auto w-full max-w-6xl px-4 pb-24 pt-14 sm:px-6 md:pt-20">
+            <JsonLd
+                data={{
+                    '@context': 'https://schema.org',
+                    '@graph': talks.map((talk) => ({
+                        '@type': 'VideoObject',
+                        '@id': `${absoluteUrl('/speaking')}#${talk.slug}`,
+                        name: talk.title,
+                        description: talk.summary,
+                        // Recording date; the talks go up on YouTube shortly after
+                        uploadDate: talk.date,
+                        thumbnailUrl: `https://i.ytimg.com/vi/${talk.youtubeId}/hqdefault.jpg`,
+                        contentUrl: youtubeWatchUrl(talk),
+                        embedUrl: youtubeEmbedUrl(talk),
+                        inLanguage: 'en',
+                        creator: { '@id': personId },
+                        recordedAt: {
+                            '@type': 'Event',
+                            name: talk.event,
+                            startDate: talk.date,
+                            location: {
+                                '@type': 'Place',
+                                name: talk.venue ?? talk.city,
+                                address: talk.city
+                            }
+                        }
+                    }))
+                }}
+            />
             <header className="mb-20 flex max-w-4xl flex-col gap-5 md:mb-28">
                 <h1 className="text-5xl font-bold leading-[1.02] tracking-[-0.035em] md:text-7xl">
                     Talks on design systems, AI and frontend.

@@ -2,6 +2,7 @@ import { remark } from 'remark';
 import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
+import rehypeSlug from 'rehype-slug';
 import rehypeStringify from 'rehype-stringify';
 import { visit } from 'unist-util-visit';
 import type { Element, Root } from 'hast';
@@ -50,6 +51,7 @@ export async function markdownToHtml(markdown: string): Promise<string> {
     const processedContent = await remark()
         .use(remarkGfm)
         .use(remarkRehype)
+        .use(rehypeSlug)
         .use(rehypeHighlight)
         .use(rehypeCodeLanguageBadge)
         .use(rehypeStringify)

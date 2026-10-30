@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/app/lib/metadata';
 import Image from 'next/image';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { ButtonLink } from '@/app/components/brand/button-link';
@@ -10,15 +11,11 @@ import { socialLinks } from '@/app/lib/site';
 const description =
     'Sous Chef, the 7shifts design system, and the products I build and ship: Kilter Money, Rezme and My Beauty Time, each usable from inside AI assistants.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+    path: '/work',
     title: 'Work',
-    description,
-    openGraph: {
-        title: 'Work | Alex Andrade',
-        description,
-        url: '/work'
-    }
-};
+    description
+});
 
 export default function WorkPage() {
     return (

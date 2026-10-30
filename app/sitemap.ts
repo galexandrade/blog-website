@@ -1,13 +1,22 @@
 import type { MetadataRoute } from 'next';
-import { getAllPosts } from '@/app/lib/blog';
+import { getAllPosts, getPostModifiedDate } from '@/app/lib/blog';
 import { absoluteUrl } from '@/app/lib/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const posts = getAllPosts();
-    const latestPostDate = posts[0]?.frontmatter.date;
+    // Most recent change to any post, for the pages that list them
+    const latestPostDate = posts
+        .map(getPostModifiedDate)
+        .sort()
+        .at(-1);
 
     const staticPages: MetadataRoute.Sitemap = [
-        { url: absoluteUrl('/'), changeFrequency: 'monthly', priority: 1 },
+        {
+            url: absoluteUrl('/'),
+            lastModified: latestPostDate,
+            changeFrequency: 'monthly',
+            priority: 1
+        },
         {
             url: absoluteUrl('/about'),
             changeFrequency: 'yearly',
@@ -38,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     const postPages: MetadataRoute.Sitemap = posts.map((post) => ({
         url: absoluteUrl(`/blog/${post.slug}`),
-        lastModified: post.frontmatter.date,
+        lastModified: getPostModifiedDate(post),
         changeFrequency: 'yearly',
         priority: 0.7
     }));

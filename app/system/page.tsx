@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/app/lib/metadata';
 import { ArrowRight, ArrowUpRight, Check, Download, X } from 'lucide-react';
 import { Mark } from '@/app/components/brand/logo';
 import { ButtonLink } from '@/app/components/brand/button-link';
@@ -19,15 +20,11 @@ import { TableOfContents } from '@/app/system/table-of-contents';
 const description =
     'Spec, the design system behind alexandrade.dev: logo, color tokens, typography, crop marks and components.';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+    path: '/system',
     title: 'System',
-    description,
-    openGraph: {
-        title: 'System | Alex Andrade',
-        description,
-        url: '/system'
-    }
-};
+    description
+});
 
 const sourceUrl =
     'https://github.com/galexandrade/blog-website/blob/main/app/lib/tokens.ts';

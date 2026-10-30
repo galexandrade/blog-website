@@ -11,10 +11,11 @@ import { Pillar, pillars } from '@/app/lib/pillars';
 
 const postsDirectory = path.join(process.cwd(), 'content/blog');
 
+function normalizeDate(value: unknown): string {
+    return value instanceof Date ? value.toISOString() : String(value ?? '');
+}
+
 function normalizeFrontmatter(data: BlogPostFrontmatter): BlogPostFrontmatter {
-    const rawDate = data.date as unknown;
-    const normalizedDate =
-        rawDate instanceof Date ? rawDate.toISOString() : String(rawDate ?? '');
 
     const tags = Array.isArray(data.tags)
         ? data.tags.map((tag) => String(tag)).filter(Boolean)
@@ -24,7 +25,8 @@ function normalizeFrontmatter(data: BlogPostFrontmatter): BlogPostFrontmatter {
 
     return {
         ...data,
-        date: normalizedDate,
+        date: normalizeDate(data.date),
+        updated: data.updated ? normalizeDate(data.updated) : undefined,
         tags,
         image
     };
@@ -94,6 +96,11 @@ export function getPostBySlug(slug: string): BlogPost | null {
     } catch {
         return null;
     }
+}
+
+// When the post last changed: its update date, or its publish date
+export function getPostModifiedDate(post: BlogPost): string {
+    return post.frontmatter.updated ?? post.frontmatter.date;
 }
 
 export function getFeaturedPosts(): BlogPost[] {
