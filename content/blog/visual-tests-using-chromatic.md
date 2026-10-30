@@ -1,4 +1,6 @@
 ---
+pillar: quality
+startHere: true
 path: visual-tests-using-chromatic
 date: 2021-10-27T00:39:38.110Z
 title: Visual tests using Chromatic

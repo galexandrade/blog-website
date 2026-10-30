@@ -7,6 +7,7 @@ import {
     BlogPostFrontmatter,
     BlogPostSummary
 } from '@/app/types/blog';
+import { Pillar, pillars } from '@/app/lib/pillars';
 
 const postsDirectory = path.join(process.cwd(), 'content/blog');
 
@@ -139,4 +140,25 @@ export function getAboutContent(): {
     } catch {
         return null;
     }
+}
+
+export interface PillarPosts {
+    pillar: Pillar;
+    posts: BlogPost[];
+}
+
+// Pillars with their posts: the "Start here" pick first, then newest first
+export function getPostsByPillar(): PillarPosts[] {
+    const posts = getAllPosts();
+
+    return pillars.map((pillar) => ({
+        pillar,
+        posts: posts
+            .filter((post) => post.frontmatter.pillar === pillar.slug)
+            .sort(
+                (a, b) =>
+                    Number(!!b.frontmatter.startHere) -
+                    Number(!!a.frontmatter.startHere)
+            )
+    }));
 }

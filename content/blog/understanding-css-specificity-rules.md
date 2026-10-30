@@ -1,4 +1,6 @@
 ---
+pillar: architecture
+startHere: true
 path: understanding-css-specificity-rules
 date: 2021-07-28T03:00:00.000Z
 title: Understanding CSS specificity rules

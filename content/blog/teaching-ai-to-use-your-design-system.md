@@ -1,4 +1,6 @@
 ---
+pillar: ai-ready
+startHere: true
 title: Teaching AI to use your design system
 description: AI agents are already writing your UI code. Here is how we taught them to use Sous Chef, the 7shifts design system, instead of improvising around it.
 date: 2026-10-02
