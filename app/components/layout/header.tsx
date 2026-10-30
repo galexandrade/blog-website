@@ -8,7 +8,7 @@ import { cn } from '@/app/lib/utils';
 
 const navItems = [
     { label: 'Writing', href: '/blog' },
-    { label: 'Work', href: '/#work' },
+    { label: 'Work', href: '/work' },
     { label: 'About', href: '/about' }
 ];
 
@@ -31,9 +31,7 @@ export function Header() {
 
                 <nav className="flex items-center gap-1 sm:gap-2">
                     {navItems.map((item, index) => {
-                        const isActive =
-                            item.href !== '/#work' &&
-                            pathname.startsWith(item.href);
+                        const isActive = pathname.startsWith(item.href);
                         return (
                             <Link
                                 key={item.href}
