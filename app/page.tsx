@@ -1,13 +1,18 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { FeaturedPost, PostList } from '@/app/components/blog/post-list';
+import { FeaturedPost } from '@/app/components/blog/post-list';
+import { PillarGrid } from '@/app/components/blog/pillar-grid';
 import { ButtonLink } from '@/app/components/brand/button-link';
 import { Eyebrow } from '@/app/components/brand/eyebrow';
 import { SectionHeading } from '@/app/components/brand/section-heading';
 import { NewsletterSignup } from '@/app/components/newsletter/newsletter-signup';
 import { ProjectCard } from '@/app/components/projects/project-card';
-import { getHomepagePosts, toPostSummary } from '@/app/lib/blog';
+import {
+    getHomepagePosts,
+    getPostsByPillar,
+    toPostSummary
+} from '@/app/lib/blog';
 import { projects } from '@/app/lib/projects';
 import { socialLinks } from '@/app/lib/site';
 
@@ -19,7 +24,11 @@ const proofPoints = [
 ];
 
 export default function Home() {
-    const [latestPost, ...recentPosts] = getHomepagePosts(5).map(toPostSummary);
+    const [latestPost] = getHomepagePosts(1).map(toPostSummary);
+    const pillarGroups = getPostsByPillar().map(({ pillar, posts }) => ({
+        pillar,
+        posts: posts.map(toPostSummary)
+    }));
 
     return (
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
@@ -84,8 +93,15 @@ export default function Home() {
                 <section className="py-20 md:py-28">
                     <SectionHeading index="01" title="Writing" />
                     <FeaturedPost post={latestPost} />
-                    <div className="mt-12">
-                        <PostList posts={recentPosts} />
+                    <div className="mt-16 flex flex-col gap-6">
+                        <div className="flex flex-col gap-2">
+                            <Eyebrow>start here</Eyebrow>
+                            <p className="max-w-2xl text-lg leading-relaxed text-muted">
+                                Everything I write falls under three pillars.
+                                Pick the one closest to your problem.
+                            </p>
+                        </div>
+                        <PillarGrid groups={pillarGroups} />
                     </div>
                     <Link
                         href="/blog"

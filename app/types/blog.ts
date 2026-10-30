@@ -1,3 +1,5 @@
+import type { PillarSlug } from '@/app/lib/pillars';
+
 export interface BlogPostFrontmatter {
     path: string;
     date: string;
@@ -7,6 +9,10 @@ export interface BlogPostFrontmatter {
     featured?: boolean;
     /** Keep the post off the homepage; it still lists on /blog and in RSS */
     hideFromHome?: boolean;
+    /** Content pillar; off-pillar posts leave it out */
+    pillar?: PillarSlug;
+    /** The pillar's "Start here" read on the homepage */
+    startHere?: boolean;
     tags?: string[];
     author?: string;
     authorRole?: string;
