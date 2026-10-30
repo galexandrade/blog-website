@@ -6,7 +6,9 @@ import { ButtonLink } from '@/app/components/brand/button-link';
 import { Eyebrow } from '@/app/components/brand/eyebrow';
 import { SectionHeading } from '@/app/components/brand/section-heading';
 import { NewsletterSignup } from '@/app/components/newsletter/newsletter-signup';
+import { ProjectCard } from '@/app/components/projects/project-card';
 import { getHomepagePosts, toPostSummary } from '@/app/lib/blog';
+import { projects } from '@/app/lib/projects';
 import { socialLinks } from '@/app/lib/site';
 
 const proofPoints = [
@@ -39,7 +41,7 @@ export default function Home() {
                                 <ArrowRight size={18} aria-hidden="true" />
                             </ButtonLink>
                         )}
-                        <ButtonLink href="/#work" variant="secondary">
+                        <ButtonLink href="/work" variant="secondary">
                             See the work
                         </ButtonLink>
                     </div>
@@ -157,8 +159,30 @@ export default function Home() {
                 </div>
             </section>
 
+            <section aria-labelledby="projects" className="pb-20 md:pb-28">
+                <SectionHeading id="projects" index="03" title="Projects" />
+                <p className="mb-10 max-w-3xl text-lg leading-relaxed text-muted">
+                    Products I&apos;ve built and shipped. Each one works from
+                    inside your AI assistant, not just from the app.
+                </p>
+                <ul className="grid gap-6 md:grid-cols-3">
+                    {projects.map((project) => (
+                        <li key={project.slug}>
+                            <ProjectCard project={project} />
+                        </li>
+                    ))}
+                </ul>
+                <Link
+                    href="/work"
+                    className="mt-8 inline-flex min-h-11 items-center gap-2 font-mono text-sm text-signal-text hover:text-foreground"
+                >
+                    All work
+                    <ArrowRight size={16} aria-hidden="true" />
+                </Link>
+            </section>
+
             <section className="pb-20 md:pb-28">
-                <SectionHeading index="03" title="Community" />
+                <SectionHeading index="04" title="Community" />
                 <div className="grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-center">
                     <div className="relative aspect-[4/3] w-full overflow-hidden border border-line">
                         <Image

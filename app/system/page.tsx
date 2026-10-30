@@ -338,7 +338,7 @@ outline: 2px solid var(--signal);`}
                                 name="ButtonLink"
                                 description="Every call to action. Primary for the one main path in a view, secondary next to it, text for inline links."
                                 code={`<ButtonLink href="/blog">Read the latest</ButtonLink>
-<ButtonLink href="/#work" variant="secondary">See the work</ButtonLink>
+<ButtonLink href="/work" variant="secondary">See the work</ButtonLink>
 <ButtonLink href={url} variant="text" external>Explore Sous Chef</ButtonLink>`}
                             >
                                 <div className="flex flex-wrap items-center gap-4">
@@ -350,7 +350,7 @@ outline: 2px solid var(--signal);`}
                                         />
                                     </ButtonLink>
                                     <ButtonLink
-                                        href="/#work"
+                                        href="/work"
                                         variant="secondary"
                                     >
                                         See the work

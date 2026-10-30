@@ -16,6 +16,7 @@ Focus areas:
 
 - [Home](https://www.alexandrade.dev/): Overview and latest posts
 - [About](https://www.alexandrade.dev/about): Background, career and current work
+- [Work](https://www.alexandrade.dev/work): Sous Chef at 7shifts, plus the products Alex builds and ships, each with its own MCP server: Kilter Money (personal finance; Claude and ChatGPT approved), Rezme (resume builder; works with any MCP client) and My Beauty Time (salon scheduling in Brazil; Claude approved, ChatGPT in review)
 - [Blog](https://www.alexandrade.dev/blog): All posts
 - [System](https://www.alexandrade.dev/system): Spec, the design system behind this site (logo, color tokens, typography, components)
 - [tokens.json](https://www.alexandrade.dev/system/tokens.json): The site's design tokens in Design Tokens Community Group format, light and dark
