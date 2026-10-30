@@ -19,7 +19,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 </span>
             </div>
             <div className="flex flex-col gap-2">
-                <h3 className="text-2xl font-bold tracking-tight transition-colors group-hover:text-signal-text">
+                <h3 className="text-2xl font-bold tracking-tight transition-opacity group-hover:opacity-70">
                     {project.name}
                 </h3>
                 <p className="leading-relaxed text-muted">{project.summary}</p>

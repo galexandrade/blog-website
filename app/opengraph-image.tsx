@@ -7,7 +7,7 @@ export const contentType = 'image/png';
 
 export default async function Image() {
     return brandImage({
-        eyebrow: '// design-systems · ai · frontend',
+        eyebrow: 'design-systems · ai · frontend',
         title: 'Design systems that humans and AI agents get right.'
     });
 }

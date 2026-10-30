@@ -1,6 +1,6 @@
 import { cn } from '@/app/lib/utils';
 
-/** The mono "// comment" label that sits above titles */
+/** The quiet mono label above a hero title. Use at most one per page */
 export function Eyebrow({
     children,
     className
@@ -9,8 +9,7 @@ export function Eyebrow({
     className?: string;
 }) {
     return (
-        <p className={cn('font-mono text-[13px] text-signal-text', className)}>
-            {'// '}
+        <p className={cn('font-mono text-[13px] text-muted', className)}>
             {children}
         </p>
     );

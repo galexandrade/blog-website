@@ -14,7 +14,7 @@ export default function NewsletterWelcomePage() {
 
     return (
         <div className="mx-auto w-full max-w-6xl px-4 pb-24 pt-20 sm:px-6 md:pt-28">
-            <header className="crop-marks mb-16 flex max-w-3xl flex-col gap-6 p-6 [--crop-len:24px] [--crop-w:3px] md:p-10">
+            <header className="mb-16 flex max-w-3xl flex-col gap-6">
                 <Eyebrow>newsletter</Eyebrow>
                 <h1 className="text-5xl font-bold leading-[1.02] tracking-[-0.035em] md:text-7xl">
                     You&apos;re in. Thanks for subscribing.

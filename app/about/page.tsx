@@ -5,11 +5,10 @@ import type { Metadata } from 'next';
 import { JsonLd } from '@/app/components/seo/json-ld';
 import { ArrowUpRight } from 'lucide-react';
 import { ButtonLink } from '@/app/components/brand/button-link';
-import { Eyebrow } from '@/app/components/brand/eyebrow';
 import { absoluteUrl, personId, socialLinks, websiteId } from '@/app/lib/site';
 
 const description =
-    'Alex Andrade leads the design system team at 7shifts and created Sous Chef. How a frontend engineer from Brazil ended up building design systems that humans and AI agents get right.';
+    'Alex Andrade leads the design system team at 7shifts and created Sous Chef. How a frontend engineer from Brazil ended up leading a design system team in Saskatoon.';
 
 export const metadata: Metadata = {
     title: 'About',
@@ -52,7 +51,6 @@ export default async function AboutPage() {
             />
             <div className="mx-auto max-w-3xl">
                 <header className="mb-12 flex flex-col gap-5 border-b border-foreground pb-10">
-                    <Eyebrow>about</Eyebrow>
                     <h1 className="text-5xl font-bold tracking-[-0.035em] md:text-7xl">
                         {aboutData.frontmatter.title}
                     </h1>
@@ -62,14 +60,13 @@ export default async function AboutPage() {
                 </header>
 
                 <div
-                    className="markdown-content prose prose-brand max-w-none text-[1.075rem] leading-8 prose-headings:font-bold prose-h2:mb-5 prose-h2:mt-14 prose-h2:text-3xl prose-h3:mb-4 prose-h3:mt-10 prose-h3:text-2xl prose-p:my-6 prose-li:my-2 prose-img:my-8"
+                    className="markdown-content prose prose-brand max-w-none text-[1.075rem] leading-8 prose-headings:font-bold prose-h2:mb-5 prose-h2:mt-14 prose-h2:text-3xl prose-h3:mb-4 prose-h3:mt-10 prose-h3:text-2xl prose-p:my-6 prose-li:my-2 prose-img:my-8 prose-a:font-bold prose-a:text-foreground prose-a:no-underline prose-a:hover:underline"
                     dangerouslySetInnerHTML={{ __html: contentHtml }}
                 />
 
                 <section className="mt-20 border border-foreground p-8 md:p-12">
                     <div className="flex flex-col gap-6">
                         <div className="flex flex-col gap-3">
-                            <Eyebrow>let&apos;s talk</Eyebrow>
                             <h2 className="text-3xl font-bold leading-tight tracking-tight md:text-4xl">
                                 Building a design system, or getting one ready
                                 for AI?

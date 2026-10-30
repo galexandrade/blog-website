@@ -21,7 +21,7 @@ export const talks: Talk[] = [
         slug: 'teaching-ai-to-use-your-design-system',
         title: 'Teaching AI to use your design system',
         summary:
-            'AI can generate interfaces in seconds, and without awareness of your design system it generates inconsistency just as fast. A talk and live demo on how 7shifts taught AI agents to use Sous Chef instead of improvising around it.',
+            'AI can generate interfaces in seconds, and without awareness of your design system it generates inconsistency just as fast. A talk and live demo on how 7shifts taught AI agents to use Sous Chef.',
         event: 'Tech Tank',
         city: 'Toronto',
         date: '2026-07-06',

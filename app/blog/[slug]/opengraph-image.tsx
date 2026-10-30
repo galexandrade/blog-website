@@ -20,8 +20,10 @@ export default async function Image({
 
     return brandImage({
         eyebrow: tags.length
-            ? `// ${tags.map((tag) => tag.toLowerCase().replace(/\s+/g, '-')).join(' · ')}`
-            : '// writing',
+            ? tags
+                  .map((tag) => tag.toLowerCase().replace(/\s+/g, '-'))
+                  .join(' · ')
+            : 'writing',
         title: post?.frontmatter.title ?? 'Alex Andrade'
     });
 }

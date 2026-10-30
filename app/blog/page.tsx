@@ -23,13 +23,7 @@ export default function BlogPage() {
     return (
         <div className="mx-auto w-full max-w-6xl px-4 pb-24 pt-14 sm:px-6 md:pt-20">
             <header className="mb-12 flex flex-col gap-4">
-                <Eyebrow>
-                    writing
-                    <span className="text-muted">
-                        {' '}
-                        · {String(posts.length).padStart(2, '0')} posts
-                    </span>
-                </Eyebrow>
+                <Eyebrow>{posts.length} posts</Eyebrow>
                 <h1 className="text-5xl font-bold tracking-[-0.035em] md:text-7xl">
                     Writing
                 </h1>

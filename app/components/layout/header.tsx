@@ -31,7 +31,7 @@ export function Header() {
                 </Link>
 
                 <nav className="flex items-center gap-1 sm:gap-2">
-                    {navItems.map((item, index) => {
+                    {navItems.map((item) => {
                         const isActive = pathname.startsWith(item.href);
                         return (
                             <Link
@@ -40,12 +40,11 @@ export function Header() {
                                 aria-current={isActive ? 'page' : undefined}
                                 className={cn(
                                     'px-2 py-2 font-mono text-[13px] transition-colors hover:text-foreground',
-                                    isActive ? 'text-foreground' : 'text-muted'
+                                    isActive
+                                        ? 'text-foreground underline decoration-signal decoration-2 underline-offset-[6px]'
+                                        : 'text-muted'
                                 )}
                             >
-                                <span className="hidden text-signal-text sm:inline">
-                                    0{index + 1}{' '}
-                                </span>
                                 {item.label}
                             </Link>
                         );

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { FeaturedPost } from '@/app/components/blog/post-list';
@@ -15,13 +14,6 @@ import {
 } from '@/app/lib/blog';
 import { projects } from '@/app/lib/projects';
 import { socialLinks } from '@/app/lib/site';
-
-const proofPoints = [
-    { value: '15+', label: 'years building software' },
-    { value: '100+', label: 'components in Sous Chef' },
-    { value: '1st', label: 'React meetup in the prairies' },
-    { value: 'BR → CA', label: 'from Brazil to Saskatoon, 2019' }
-];
 
 export default function Home() {
     const [latestPost] = getHomepagePosts(1).map(toPostSummary);
@@ -54,6 +46,10 @@ export default function Home() {
                             See the work
                         </ButtonLink>
                     </div>
+                    <p className="font-mono text-[13px] text-muted">
+                        15+ years building software · 100+ components in Sous
+                        Chef · Brazil → Saskatoon, 2019
+                    </p>
                 </div>
 
                 <div className="crop-marks mx-auto w-full max-w-sm p-4 [--crop-len:28px] [--crop-w:3px] md:p-5">
@@ -70,51 +66,26 @@ export default function Home() {
                 </div>
             </section>
 
-            <section
-                aria-label="At a glance"
-                className="grid grid-cols-2 gap-px border-y border-line bg-line md:grid-cols-4"
-            >
-                {proofPoints.map((point) => (
-                    <div
-                        key={point.label}
-                        className="flex flex-col gap-1 bg-background px-4 py-6 md:px-6"
-                    >
-                        <span className="text-3xl font-bold tracking-tight md:text-4xl">
-                            {point.value}
-                        </span>
-                        <span className="font-mono text-xs text-muted">
-                            {point.label}
-                        </span>
-                    </div>
-                ))}
-            </section>
-
             {latestPost && (
                 <section className="py-20 md:py-28">
-                    <SectionHeading index="01" title="Writing" />
+                    <SectionHeading title="Writing" />
                     <FeaturedPost post={latestPost} />
                     <div className="mt-16 flex flex-col gap-6">
-                        <div className="flex flex-col gap-2">
-                            <Eyebrow>start here</Eyebrow>
-                            <p className="max-w-2xl text-lg leading-relaxed text-muted">
-                                Everything I write falls under three pillars.
-                                Pick the one closest to your problem.
-                            </p>
-                        </div>
+                        <p className="max-w-2xl text-lg leading-relaxed text-muted">
+                            Everything I write falls under three pillars. Pick
+                            the one closest to your problem.
+                        </p>
                         <PillarGrid groups={pillarGroups} />
                     </div>
-                    <Link
-                        href="/blog"
-                        className="mt-8 inline-flex min-h-11 items-center gap-2 font-mono text-sm text-signal-text hover:text-foreground"
-                    >
+                    <ButtonLink href="/blog" variant="text" className="mt-8">
                         All writing
-                        <ArrowRight size={16} aria-hidden="true" />
-                    </Link>
+                        <ArrowRight size={18} aria-hidden="true" />
+                    </ButtonLink>
                 </section>
             )}
 
             <section id="work" className="scroll-mt-24 pb-20 md:pb-28">
-                <SectionHeading index="02" title="Work" />
+                <SectionHeading title="Work" />
                 <div className="grid gap-10 md:grid-cols-[1fr_1.1fr] md:items-center">
                     <div className="flex flex-col gap-5">
                         <p className="font-mono text-[13px] text-muted">
@@ -132,8 +103,8 @@ export default function Home() {
                         </p>
                         <p className="text-lg leading-relaxed text-muted">
                             Today I lead the design system team, working on
-                            semantic tokens, dark mode, and teaching AI agents
-                            to build with the system instead of around it.
+                            semantic tokens, dark mode, and the MCP server that
+                            teaches AI agents to use Sous Chef.
                         </p>
                         <div className="flex flex-wrap gap-x-6 gap-y-2 pt-1">
                             <ButtonLink
@@ -150,7 +121,7 @@ export default function Home() {
                         href={socialLinks.sousChef}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="crop-marks block p-4 [--crop-len:24px] [--crop-w:3px]"
+                        className="block"
                     >
                         <Image
                             src="/assets/sous-chef-2.png"
@@ -165,7 +136,7 @@ export default function Home() {
             </section>
 
             <section aria-labelledby="projects" className="pb-20 md:pb-28">
-                <SectionHeading id="projects" index="03" title="Projects" />
+                <SectionHeading id="projects" title="Projects" />
                 <p className="mb-10 max-w-3xl text-lg leading-relaxed text-muted">
                     Products I&apos;ve built and shipped. Each one works from
                     inside your AI assistant, not just from the app.
@@ -177,17 +148,14 @@ export default function Home() {
                         </li>
                     ))}
                 </ul>
-                <Link
-                    href="/work"
-                    className="mt-8 inline-flex min-h-11 items-center gap-2 font-mono text-sm text-signal-text hover:text-foreground"
-                >
+                <ButtonLink href="/work" variant="text" className="mt-8">
                     All work
-                    <ArrowRight size={16} aria-hidden="true" />
-                </Link>
+                    <ArrowRight size={18} aria-hidden="true" />
+                </ButtonLink>
             </section>
 
             <section className="pb-20 md:pb-28">
-                <SectionHeading index="04" title="Community" />
+                <SectionHeading title="Community" />
                 <div className="grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-center">
                     <div className="relative aspect-[4/3] w-full overflow-hidden border border-line">
                         <Image
@@ -230,7 +198,6 @@ export default function Home() {
             <section className="mb-20 border border-foreground p-8 md:mb-28 md:p-12">
                 <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                     <div className="flex max-w-2xl flex-col gap-3">
-                        <Eyebrow>let&apos;s talk</Eyebrow>
                         <h2 className="text-3xl font-bold leading-tight tracking-tight md:text-4xl">
                             Building a design system, or getting one ready for
                             AI?

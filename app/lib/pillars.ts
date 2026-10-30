@@ -13,7 +13,7 @@ export const pillars: Pillar[] = [
         slug: 'ai-ready',
         title: 'AI-ready design systems',
         description:
-            'MCP, agent context and docs for LLMs, so AI builds with the system instead of around it.'
+            'MCP, agent context and docs written for LLMs, so AI-generated UI stays on-system.'
     },
     {
         slug: 'architecture',

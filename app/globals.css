@@ -93,7 +93,7 @@
     --tw-prose-links: var(--signal-text);
     --tw-prose-bold: var(--foreground);
     --tw-prose-counters: var(--muted);
-    --tw-prose-bullets: var(--signal);
+    --tw-prose-bullets: var(--muted);
     --tw-prose-hr: var(--line);
     --tw-prose-quotes: var(--foreground);
     --tw-prose-quote-borders: var(--signal);

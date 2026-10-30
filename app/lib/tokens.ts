@@ -56,7 +56,7 @@ export const colorTokens: ColorToken[] = [
         name: 'signal',
         light: '#f04e17',
         dark: '#ff6a33',
-        usage: 'Crop marks, focus rings and fills. Never small text.',
+        usage: 'The logo, one framed object per page, focus rings and link underlines. Never small text.',
         contrastWith: 'background',
         minContrast: 3
     },
@@ -64,14 +64,14 @@ export const colorTokens: ColorToken[] = [
         name: 'signal-text',
         light: '#c2410c',
         dark: '#ff6a33',
-        usage: 'Accent text and links',
+        usage: 'Rare accent text: in-article links and pending status',
         contrastWith: 'background',
         minContrast: 4.5
     },
     {
         name: 'primary',
         light: '#111111',
-        dark: '#ff6a33',
+        dark: '#f4f4f0',
         usage: 'Primary button fill'
     },
     {

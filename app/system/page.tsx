@@ -46,11 +46,11 @@ const sections = [
 const principles = [
     {
         title: 'Frame what matters',
-        body: 'Crop marks point at the one thing worth your attention. If everything is framed, nothing is.'
+        body: 'Crop marks frame the logo and one object per page, usually a portrait. If everything is framed, nothing is.'
     },
     {
         title: 'One signal',
-        body: 'Orange is reserved for crop marks, focus and the main path. Everything else is paper and ink.'
+        body: 'Orange is for crop marks, focus rings and link underlines. Labels, numbers and buttons stay paper and ink.'
     },
     {
         title: 'Tokens, not values',
@@ -79,10 +79,13 @@ const logoRules = [
 
 const voiceRules = [
     { label: 'alex andrade', note: 'The wordmark is always lowercase.' },
-    { label: '// writing', note: 'Mono comments label sections and metadata.' },
     {
-        label: '01 · 02 · 03',
-        note: 'Numbers give sections an order, like a spec.'
+        label: 'no // labels',
+        note: 'Mono is for metadata: dates, tags, counts. Not section kickers.'
+    },
+    {
+        label: 'no 01 · 02 · 03',
+        note: 'Number things only when order is real, like this spec.'
     },
     {
         label: 'I built, we learned',
@@ -367,7 +370,7 @@ outline: 2px solid var(--signal);`}
 
                             <Specimen
                                 name="Eyebrow"
-                                description="The mono comment above a title. Lowercase, short, never a sentence."
+                                description="A quiet mono label above a hero title. Muted, lowercase, at most one per page."
                                 code={`<Eyebrow>design-systems · ai · frontend</Eyebrow>`}
                             >
                                 <Eyebrow>
@@ -377,14 +380,11 @@ outline: 2px solid var(--signal);`}
 
                             <Specimen
                                 name="SectionHeading"
-                                description="Numbered section title with a full-width rule. Numbers follow page order."
-                                code={`<SectionHeading index="01" title="Writing" />`}
+                                description="Section title with a full-width rule. The optional index is for genuinely ordered content only."
+                                code={`<SectionHeading title="Writing" />`}
                             >
                                 <div className="w-full [&>div]:mb-0">
-                                    <SectionHeading
-                                        index="01"
-                                        title="Writing"
-                                    />
+                                    <SectionHeading title="Writing" />
                                 </div>
                             </Specimen>
 

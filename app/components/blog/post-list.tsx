@@ -20,7 +20,7 @@ export function PostList({ posts }: { posts: BlogPostSummary[] }) {
                             {formatDate(post.frontmatter.date)}
                         </time>
                         <div className="flex flex-col gap-2">
-                            <h3 className="text-2xl font-bold tracking-tight transition-colors group-hover:text-signal-text md:text-[1.75rem]">
+                            <h3 className="text-2xl font-bold tracking-tight transition-opacity group-hover:opacity-70 md:text-[1.75rem]">
                                 {post.frontmatter.title}
                             </h3>
                             <p className="max-w-2xl leading-relaxed text-muted">
@@ -31,7 +31,7 @@ export function PostList({ posts }: { posts: BlogPostSummary[] }) {
                         <ArrowRight
                             size={22}
                             aria-hidden="true"
-                            className="hidden self-center text-muted transition-transform group-hover:translate-x-1 group-hover:text-signal-text md:block"
+                            className="hidden self-center text-muted transition-transform group-hover:translate-x-1 group-hover:text-foreground md:block"
                         />
                     </Link>
                 </li>
@@ -44,7 +44,7 @@ export function FeaturedPost({ post }: { post: BlogPostSummary }) {
     return (
         <Link
             href={`/blog/${post.slug}`}
-            className="crop-marks group grid gap-8 p-5 [--crop-len:22px] md:grid-cols-[1.1fr_1fr] md:items-center md:p-8"
+            className="group grid gap-8 md:grid-cols-[1.1fr_1fr] md:items-center md:gap-12"
         >
             {post.coverImage && (
                 <div className="relative aspect-[16/10] w-full overflow-hidden border border-line bg-surface">
@@ -59,13 +59,13 @@ export function FeaturedPost({ post }: { post: BlogPostSummary }) {
             )}
             <div className="flex flex-col gap-4">
                 <p className="font-mono text-[13px] text-muted">
-                    <span className="text-signal-text">Latest</span> ·{' '}
+                    <span className="text-foreground">Latest</span> ·{' '}
                     <time dateTime={post.frontmatter.date}>
                         {formatDate(post.frontmatter.date)}
                     </time>{' '}
                     · {post.readingTime}
                 </p>
-                <h3 className="text-3xl font-bold leading-[1.05] tracking-tight transition-colors group-hover:text-signal-text md:text-[2.75rem]">
+                <h3 className="text-3xl font-bold leading-[1.05] tracking-tight transition-opacity group-hover:opacity-70 md:text-[2.75rem]">
                     {post.frontmatter.title}
                 </h3>
                 <p className="text-lg leading-relaxed text-muted">
