@@ -12,8 +12,9 @@ interface NewsletterSignupProps {
 
 /*
  * Buttondown signup. A plain form post, not fetch: Buttondown sometimes
- * answers with a CAPTCHA or validation page the subscriber has to complete,
- * so it opens in a new tab and the visitor keeps their place here.
+ * answers with a CAPTCHA or validation page the subscriber has to complete.
+ * Buttondown's redirect settings send them back to /newsletter/thanks and,
+ * after confirming, /newsletter/welcome, so they end up on this site.
  */
 export function NewsletterSignup({
     id,
@@ -46,7 +47,6 @@ export function NewsletterSignup({
                 <form
                     action={`https://buttondown.com/api/emails/embed-subscribe/${buttondownUsername}`}
                     method="post"
-                    target="_blank"
                     className="flex w-full flex-col gap-2 @3xl:max-w-sm"
                 >
                     <label
@@ -73,7 +73,7 @@ export function NewsletterSignup({
                         </button>
                     </div>
                     <p className="font-mono text-xs text-muted">
-                        Opens Buttondown in a new tab to confirm.
+                        You&apos;ll get an email to confirm.
                     </p>
                 </form>
             </div>
