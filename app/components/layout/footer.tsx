@@ -5,6 +5,7 @@ import { buttondownUsername, socialLinks } from '@/app/lib/site';
 const siteLinks = [
     { label: 'Writing', href: '/blog' },
     { label: 'Work', href: '/work' },
+    { label: 'Speaking', href: '/speaking' },
     { label: 'About', href: '/about' },
     { label: 'System', href: '/system' },
     { label: 'RSS', href: '/rss.xml' },
