@@ -128,17 +128,6 @@ export default function Home() {
                                 Explore Sous Chef
                                 <ArrowUpRight size={18} aria-hidden="true" />
                             </ButtonLink>
-                            <ButtonLink
-                                href="/blog/teaching-ai-to-use-your-design-system"
-                                variant="text"
-                            >
-                                How we taught AI to use it
-                                <ArrowRight size={18} aria-hidden="true" />
-                            </ButtonLink>
-                            <ButtonLink href="/system" variant="text">
-                                This site runs on its own design system
-                                <ArrowRight size={18} aria-hidden="true" />
-                            </ButtonLink>
                         </div>
                     </div>
                     <a
