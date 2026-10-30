@@ -41,7 +41,7 @@ export function PillarGrid({ groups }: PillarGridProps) {
                                             : 'latest'}{' '}
                                         · {first.readingTime}
                                     </span>
-                                    <span className="text-lg font-bold leading-snug tracking-tight decoration-signal decoration-2 underline-offset-4 group-hover:underline">
+                                    <span className="text-lg font-bold leading-snug tracking-tight transition-opacity group-hover:opacity-70">
                                         {first.frontmatter.title}
                                     </span>
                                 </Link>
@@ -53,7 +53,7 @@ export function PillarGrid({ groups }: PillarGridProps) {
                                     <span className="font-mono text-xs text-muted">
                                         in progress
                                     </span>
-                                    <span className="inline-flex items-center gap-2 font-bold decoration-signal decoration-2 underline-offset-4 group-hover:underline">
+                                    <span className="inline-flex items-center gap-2 font-bold transition-opacity group-hover:opacity-70">
                                         Get the first post by email
                                         <ArrowRight
                                             size={16}
@@ -81,7 +81,7 @@ export function PillarGrid({ groups }: PillarGridProps) {
                                                         post.frontmatter.date
                                                     )}
                                                 </time>
-                                                <span className="font-semibold decoration-signal decoration-2 underline-offset-4 group-hover:underline">
+                                                <span className="font-semibold transition-opacity group-hover:opacity-70">
                                                     {post.frontmatter.title}
                                                 </span>
                                             </Link>

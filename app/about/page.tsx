@@ -60,7 +60,7 @@ export default async function AboutPage() {
                 </header>
 
                 <div
-                    className="markdown-content prose prose-brand max-w-none text-[1.075rem] leading-8 prose-headings:font-bold prose-h2:mb-5 prose-h2:mt-14 prose-h2:text-3xl prose-h3:mb-4 prose-h3:mt-10 prose-h3:text-2xl prose-p:my-6 prose-li:my-2 prose-img:my-8"
+                    className="markdown-content prose prose-brand max-w-none text-[1.075rem] leading-8 prose-headings:font-bold prose-h2:mb-5 prose-h2:mt-14 prose-h2:text-3xl prose-h3:mb-4 prose-h3:mt-10 prose-h3:text-2xl prose-p:my-6 prose-li:my-2 prose-img:my-8 prose-a:font-bold prose-a:text-foreground prose-a:no-underline hover:prose-a:underline"
                     dangerouslySetInnerHTML={{ __html: contentHtml }}
                 />
 

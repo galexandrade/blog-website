@@ -152,7 +152,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         <p className="text-muted">{authorRole}</p>
                         <Link
                             href="/about"
-                            className="mt-1 inline-flex min-h-11 items-center gap-1.5 font-semibold underline decoration-signal decoration-2 underline-offset-4 hover:decoration-foreground sm:min-h-0"
+                            className="mt-1 inline-flex min-h-11 items-center gap-1.5 font-semibold underline decoration-muted decoration-1 underline-offset-4 hover:decoration-foreground sm:min-h-0"
                         >
                             More about me
                             <ArrowRight size={16} aria-hidden="true" />

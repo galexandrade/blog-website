@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { FeaturedPost } from '@/app/components/blog/post-list';
@@ -78,13 +77,10 @@ export default function Home() {
                         </p>
                         <PillarGrid groups={pillarGroups} />
                     </div>
-                    <Link
-                        href="/blog"
-                        className="mt-8 inline-flex min-h-11 items-center gap-2 font-mono text-sm text-muted underline decoration-signal underline-offset-4 hover:text-foreground"
-                    >
+                    <ButtonLink href="/blog" variant="text" className="mt-8">
                         All writing
-                        <ArrowRight size={16} aria-hidden="true" />
-                    </Link>
+                        <ArrowRight size={18} aria-hidden="true" />
+                    </ButtonLink>
                 </section>
             )}
 
@@ -152,13 +148,10 @@ export default function Home() {
                         </li>
                     ))}
                 </ul>
-                <Link
-                    href="/work"
-                    className="mt-8 inline-flex min-h-11 items-center gap-2 font-mono text-sm text-muted underline decoration-signal underline-offset-4 hover:text-foreground"
-                >
+                <ButtonLink href="/work" variant="text" className="mt-8">
                     All work
-                    <ArrowRight size={16} aria-hidden="true" />
-                </Link>
+                    <ArrowRight size={18} aria-hidden="true" />
+                </ButtonLink>
             </section>
 
             <section className="pb-20 md:pb-28">

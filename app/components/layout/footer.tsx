@@ -45,7 +45,7 @@ export function Footer() {
                     Built on{' '}
                     <Link
                         href="/system"
-                        className="text-foreground underline decoration-signal underline-offset-4 hover:decoration-foreground"
+                        className="text-foreground underline decoration-muted underline-offset-4 hover:decoration-foreground"
                     >
                         Spec
                     </Link>

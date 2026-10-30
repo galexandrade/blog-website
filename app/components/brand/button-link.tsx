@@ -6,7 +6,7 @@ const variants = {
         'min-h-11 gap-2 bg-primary px-5 py-3 font-semibold text-on-primary transition-opacity hover:opacity-90',
     secondary:
         'min-h-11 border border-foreground px-5 py-3 font-semibold transition-colors hover:bg-foreground hover:text-background',
-    text: 'min-h-11 gap-1.5 font-semibold underline decoration-signal decoration-2 underline-offset-4 hover:decoration-foreground'
+    text: 'min-h-11 gap-1.5 font-semibold underline decoration-muted decoration-1 underline-offset-4 hover:decoration-foreground'
 };
 
 export type ButtonLinkVariant = keyof typeof variants;

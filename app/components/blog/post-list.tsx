@@ -20,7 +20,7 @@ export function PostList({ posts }: { posts: BlogPostSummary[] }) {
                             {formatDate(post.frontmatter.date)}
                         </time>
                         <div className="flex flex-col gap-2">
-                            <h3 className="text-2xl font-bold tracking-tight decoration-signal decoration-2 underline-offset-4 group-hover:underline md:text-[1.75rem]">
+                            <h3 className="text-2xl font-bold tracking-tight transition-opacity group-hover:opacity-70 md:text-[1.75rem]">
                                 {post.frontmatter.title}
                             </h3>
                             <p className="max-w-2xl leading-relaxed text-muted">
@@ -65,7 +65,7 @@ export function FeaturedPost({ post }: { post: BlogPostSummary }) {
                     </time>{' '}
                     · {post.readingTime}
                 </p>
-                <h3 className="text-3xl font-bold leading-[1.05] tracking-tight decoration-signal decoration-2 underline-offset-4 group-hover:underline md:text-[2.75rem]">
+                <h3 className="text-3xl font-bold leading-[1.05] tracking-tight transition-opacity group-hover:opacity-70 md:text-[2.75rem]">
                     {post.frontmatter.title}
                 </h3>
                 <p className="text-lg leading-relaxed text-muted">
