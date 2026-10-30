@@ -5,6 +5,8 @@ export interface BlogPostFrontmatter {
     description: string;
     image?: string;
     featured?: boolean;
+    /** Keep the post off the homepage; it still lists on /blog and in RSS */
+    hideFromHome?: boolean;
     tags?: string[];
     author?: string;
     authorRole?: string;

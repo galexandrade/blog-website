@@ -1,6 +1,7 @@
 ---
 path: you-are-writing-legacy-code
 date: 2020-03-18T15:23:43.280Z
+hideFromHome: true
 title: You are writing legacy code
 description: >-
     Technology is constantly evolving, and that makes the code we write today the
