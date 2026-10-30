@@ -19,6 +19,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.8
         },
         {
+            url: absoluteUrl('/speaking'),
+            changeFrequency: 'monthly',
+            priority: 0.8
+        },
+        {
             url: absoluteUrl('/system'),
             changeFrequency: 'monthly',
             priority: 0.6

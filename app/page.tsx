@@ -196,6 +196,12 @@ export default function Home() {
                             also lead frontend guilds on React, TypeScript and
                             accessibility.
                         </p>
+                        <div className="flex flex-wrap gap-x-6 gap-y-2 pt-1">
+                            <ButtonLink href="/speaking" variant="text">
+                                Watch my talks
+                                <ArrowRight size={18} aria-hidden="true" />
+                            </ButtonLink>
+                        </div>
                     </div>
                 </div>
             </section>
