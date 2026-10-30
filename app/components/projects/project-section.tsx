@@ -24,9 +24,7 @@ export function ProjectSection({ project }: { project: Project }) {
             <div className="grid gap-10 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] lg:gap-14">
                 <div className="flex flex-col gap-5">
                     <div className="flex items-center gap-4">
-                        <div className="crop-marks shrink-0 p-2 [--crop-len:12px]">
-                            <ProjectIcon project={project} />
-                        </div>
+                        <ProjectIcon project={project} />
                         <div className="flex flex-col gap-1">
                             <h3
                                 id={`${project.slug}-title`}
@@ -43,8 +41,8 @@ export function ProjectSection({ project }: { project: Project }) {
                     <p className="text-lg leading-relaxed">{project.pitch}</p>
 
                     <div className="flex flex-col gap-2.5 border border-line bg-surface px-5 py-4">
-                        <p className="font-mono text-xs text-signal-text">
-                            {'// ai'}
+                        <p className="font-mono text-xs text-foreground">
+                            With your AI assistant
                         </p>
                         {project.ai.map((line) => (
                             <p
@@ -173,7 +171,7 @@ export function ProjectSection({ project }: { project: Project }) {
                                         phoneScreens && 'w-full max-w-[16rem]'
                                     )}
                                 >
-                                    <span className="font-mono text-xs text-signal-text">
+                                    <span className="font-mono text-xs text-muted">
                                         {String(index + 1).padStart(2, '0')}
                                     </span>
                                     <span className="text-lg font-bold">

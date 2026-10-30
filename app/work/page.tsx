@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { ButtonLink } from '@/app/components/brand/button-link';
-import { Eyebrow } from '@/app/components/brand/eyebrow';
 import { SectionHeading } from '@/app/components/brand/section-heading';
 import { ProjectSection } from '@/app/components/projects/project-section';
 import { projects } from '@/app/lib/projects';
@@ -25,7 +24,6 @@ export default function WorkPage() {
     return (
         <div className="mx-auto w-full max-w-6xl px-4 pb-24 pt-14 sm:px-6 md:pt-20">
             <header className="mb-20 flex max-w-4xl flex-col gap-5 md:mb-28">
-                <Eyebrow>work</Eyebrow>
                 <h1 className="text-5xl font-bold leading-[1.02] tracking-[-0.035em] md:text-7xl">
                     Design systems at 7shifts. Agent-ready products of my own.
                 </h1>
@@ -37,7 +35,7 @@ export default function WorkPage() {
             </header>
 
             <section aria-labelledby="at-7shifts" className="mb-24 md:mb-32">
-                <SectionHeading id="at-7shifts" index="01" title="At 7shifts" />
+                <SectionHeading id="at-7shifts" title="At 7shifts" />
                 <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-14">
                     <div className="flex flex-col gap-4">
                         <p className="font-mono text-[13px] text-muted">
@@ -71,7 +69,7 @@ export default function WorkPage() {
                             </ButtonLink>
                         </div>
                     </div>
-                    <div className="crop-marks p-4 [--crop-len:24px] [--crop-w:3px]">
+                    <div>
                         <Image
                             src="/assets/sous-chef-2.png"
                             alt="The Sous Chef documentation homepage"
@@ -79,13 +77,14 @@ export default function WorkPage() {
                             height={798}
                             sizes="(min-width: 768px) 560px, 100vw"
                             className="h-auto w-full border border-line"
+                            priority
                         />
                     </div>
                 </div>
             </section>
 
             <section aria-labelledby="products">
-                <SectionHeading id="products" index="02" title="Products" />
+                <SectionHeading id="products" title="Products" />
                 <p className="mb-6 max-w-3xl text-lg leading-relaxed text-muted">
                     Three products I&apos;ve built and shipped. Each one has its
                     own MCP server with OAuth, so people can use it from inside

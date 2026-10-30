@@ -135,7 +135,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 />
 
                 <aside className="mt-16 flex flex-col gap-5 border-t border-foreground pt-8 sm:flex-row sm:items-center">
-                    <div className="crop-marks shrink-0 p-2 [--crop-len:12px]">
+                    <div className="shrink-0">
                         <Image
                             src="/assets/profile-2.png"
                             alt=""
@@ -145,14 +145,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         />
                     </div>
                     <div className="flex flex-col gap-1">
-                        <p className="font-mono text-xs text-signal-text">
-                            {'// written by'}
+                        <p className="font-mono text-xs text-muted">
+                            Written by
                         </p>
                         <p className="text-xl font-bold">{authorName}</p>
                         <p className="text-muted">{authorRole}</p>
                         <Link
                             href="/about"
-                            className="mt-1 inline-flex min-h-11 items-center gap-1.5 font-semibold underline decoration-signal decoration-2 underline-offset-4 hover:text-signal-text sm:min-h-0"
+                            className="mt-1 inline-flex min-h-11 items-center gap-1.5 font-semibold underline decoration-signal decoration-2 underline-offset-4 hover:decoration-foreground sm:min-h-0"
                         >
                             More about me
                             <ArrowRight size={16} aria-hidden="true" />

@@ -6,7 +6,7 @@ export const contentType = 'image/png';
 
 export default async function Image() {
     return brandImage({
-        eyebrow: '// system',
+        eyebrow: 'system',
         title: 'Spec: the design system behind this site'
     });
 }

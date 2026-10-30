@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { ArrowRight, ArrowUpRight, Download } from 'lucide-react';
 import { ButtonLink } from '@/app/components/brand/button-link';
 import { CopyButton } from '@/app/components/brand/copy-button';
-import { Eyebrow } from '@/app/components/brand/eyebrow';
 import { SectionHeading } from '@/app/components/brand/section-heading';
 import {
     talks,
@@ -27,21 +26,6 @@ export const metadata: Metadata = {
     }
 };
 
-const topics = [
-    {
-        title: 'AI-ready design systems',
-        body: 'Docs written for agents, MCP servers, and keeping AI-generated UI on-system.'
-    },
-    {
-        title: 'Design system architecture',
-        body: 'Tokens, theming, dark mode, and growing a system from a handful of components to 100+.'
-    },
-    {
-        title: 'DS quality and developer experience',
-        body: 'Visual testing with Chromatic, testing strategy, and making the right way the easy way.'
-    }
-];
-
 const dateFormat = new Intl.DateTimeFormat('en-US', {
     month: 'short',
     year: 'numeric',
@@ -52,7 +36,6 @@ export default function SpeakingPage() {
     return (
         <div className="mx-auto w-full max-w-6xl px-4 pb-24 pt-14 sm:px-6 md:pt-20">
             <header className="mb-20 flex max-w-4xl flex-col gap-5 md:mb-28">
-                <Eyebrow>speaking</Eyebrow>
                 <h1 className="text-5xl font-bold leading-[1.02] tracking-[-0.035em] md:text-7xl">
                     Talks on design systems, AI and frontend.
                 </h1>
@@ -64,31 +47,35 @@ export default function SpeakingPage() {
             </header>
 
             <section aria-labelledby="talks" className="mb-24 md:mb-32">
-                <SectionHeading id="talks" index="01" title="Talks" />
+                <SectionHeading id="talks" title="Talks" />
                 <ol className="flex flex-col gap-20">
-                    {talks.map((talk) => (
+                    {talks.map((talk, index) => (
                         <li key={talk.slug}>
-                            <TalkEntry talk={talk} />
+                            <TalkEntry talk={talk} eager={index === 0} />
                         </li>
                     ))}
                 </ol>
             </section>
 
             <section aria-labelledby="topics" className="mb-24 md:mb-32">
-                <SectionHeading id="topics" index="02" title="Topics" />
-                <ul className="grid gap-px border border-line bg-line md:grid-cols-3">
-                    {topics.map((topic) => (
-                        <li
-                            key={topic.title}
-                            className="flex flex-col gap-2 bg-background p-6"
-                        >
-                            <h3 className="text-xl font-bold tracking-tight">
-                                {topic.title}
-                            </h3>
-                            <p className="text-muted">{topic.body}</p>
-                        </li>
-                    ))}
-                </ul>
+                <SectionHeading id="topics" title="Topics" />
+                <p className="max-w-3xl text-xl leading-relaxed text-muted md:text-2xl md:leading-relaxed">
+                    <span className="text-foreground">
+                        AI-ready design systems
+                    </span>
+                    : docs written for agents, MCP servers, and keeping
+                    AI-generated UI on-system.{' '}
+                    <span className="text-foreground">
+                        Design system architecture
+                    </span>
+                    : tokens, theming, dark mode, and growing from a handful of
+                    components to 100+.{' '}
+                    <span className="text-foreground">
+                        Quality and developer experience
+                    </span>
+                    : visual testing with Chromatic, testing strategy, and
+                    making the right way the easy way.
+                </p>
             </section>
 
             <section
@@ -96,15 +83,11 @@ export default function SpeakingPage() {
                 aria-labelledby="speaker-kit-title"
                 className="mb-24 scroll-mt-24 md:mb-32"
             >
-                <SectionHeading
-                    id="speaker-kit-title"
-                    index="03"
-                    title="Speaker kit"
-                />
+                <SectionHeading id="speaker-kit-title" title="Speaker kit" />
                 <div className="grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
                     <div className="flex flex-col gap-5 md:sticky md:top-24 md:self-start">
-                        <div className="crop-marks p-4 [--crop-len:24px] [--crop-w:3px]">
-                            <div className="relative aspect-[1230/1278] w-full overflow-hidden bg-surface">
+                        <div>
+                            <div className="relative aspect-[1230/1278] w-full overflow-hidden border border-line bg-surface">
                                 <Image
                                     src={headshot.src}
                                     alt="Headshot of Alex Andrade"
@@ -138,7 +121,7 @@ export default function SpeakingPage() {
                                     className="flex flex-col gap-4 border-b border-line py-8 first:pt-6"
                                 >
                                     <div className="flex flex-wrap items-center justify-between gap-3">
-                                        <h3 className="font-mono text-sm text-signal-text">
+                                        <h3 className="font-mono text-sm text-foreground">
                                             {bio.length} bio
                                             <span className="text-muted">
                                                 {' '}
@@ -168,7 +151,6 @@ export default function SpeakingPage() {
             <section className="border border-foreground p-8 md:p-12">
                 <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                     <div className="flex max-w-2xl flex-col gap-3">
-                        <Eyebrow>invite me</Eyebrow>
                         <h2 className="text-3xl font-bold leading-tight tracking-tight md:text-4xl">
                             Running a meetup, conference or podcast?
                         </h2>
@@ -187,7 +169,7 @@ export default function SpeakingPage() {
     );
 }
 
-function TalkEntry({ talk }: { talk: Talk }) {
+function TalkEntry({ talk, eager }: { talk: Talk; eager: boolean }) {
     return (
         <article className="grid gap-8 md:grid-cols-[1fr_1.2fr] md:items-center md:gap-14">
             <div className="flex flex-col gap-4">
@@ -224,12 +206,12 @@ function TalkEntry({ talk }: { talk: Talk }) {
                     </ButtonLink>
                 </div>
             </div>
-            <div className="crop-marks p-4 [--crop-len:24px] [--crop-w:3px]">
+            <div>
                 <div className="relative aspect-video w-full overflow-hidden border border-line bg-surface">
                     <iframe
                         src={youtubeEmbedUrl(talk)}
                         title={`${talk.title}, recorded at ${talk.event}`}
-                        loading="lazy"
+                        loading={eager ? 'eager' : 'lazy'}
                         allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerPolicy="strict-origin-when-cross-origin"
                         allowFullScreen

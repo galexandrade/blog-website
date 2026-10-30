@@ -6,7 +6,7 @@ export const contentType = 'image/png';
 
 export default async function Image() {
     return brandImage({
-        eyebrow: '// work',
+        eyebrow: 'work',
         title: 'Design systems at 7shifts. Agent-ready products of my own.'
     });
 }

@@ -6,7 +6,7 @@ export const contentType = 'image/png';
 
 export default async function Image() {
     return brandImage({
-        eyebrow: '// writing',
+        eyebrow: 'writing',
         title: 'Design systems, AI and MCP, and frontend architecture'
     });
 }

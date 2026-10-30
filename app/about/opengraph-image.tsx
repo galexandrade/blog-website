@@ -6,7 +6,7 @@ export const contentType = 'image/png';
 
 export default async function Image() {
     return brandImage({
-        eyebrow: '// about',
-        title: 'I build design systems that humans and AI agents get right.'
+        eyebrow: 'about',
+        title: 'From Brazil to Saskatoon, building design systems at 7shifts.'
     });
 }

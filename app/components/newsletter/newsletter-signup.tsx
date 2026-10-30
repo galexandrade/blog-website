@@ -1,4 +1,3 @@
-import { Eyebrow } from '@/app/components/brand/eyebrow';
 import { buttondownUsername } from '@/app/lib/site';
 import { cn } from '@/app/lib/utils';
 
@@ -31,11 +30,13 @@ export function NewsletterSignup({
     return (
         <section
             aria-labelledby={`${id}-title`}
-            className={cn('@container crop-marks p-6 md:p-10', className)}
+            className={cn(
+                '@container border border-line p-6 md:p-10',
+                className
+            )}
         >
             <div className="flex flex-col gap-6 @3xl:flex-row @3xl:items-end @3xl:justify-between @3xl:gap-12">
                 <div className="flex max-w-xl flex-col gap-3">
-                    <Eyebrow>newsletter</Eyebrow>
                     <h2
                         id={`${id}-title`}
                         className="text-2xl font-bold leading-tight tracking-tight md:text-3xl"

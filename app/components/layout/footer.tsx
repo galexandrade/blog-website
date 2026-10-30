@@ -29,7 +29,8 @@ export function Footer() {
                 <div className="flex flex-col gap-3">
                     <Wordmark />
                     <p className="max-w-sm text-muted">
-                        Design systems that humans and AI agents get right.
+                        Writing about design systems, AI and frontend from
+                        Saskatoon.
                     </p>
                 </div>
                 <FooterColumn title="site" links={siteLinks} />
@@ -44,7 +45,7 @@ export function Footer() {
                     Built on{' '}
                     <Link
                         href="/system"
-                        className="text-foreground underline decoration-signal underline-offset-4 hover:text-signal-text"
+                        className="text-foreground underline decoration-signal underline-offset-4 hover:decoration-foreground"
                     >
                         Spec
                     </Link>
@@ -66,7 +67,7 @@ function FooterColumn({
 }) {
     return (
         <div className="flex flex-col gap-3">
-            <p className="font-mono text-xs text-signal-text">{`// ${title}`}</p>
+            <p className="font-mono text-xs text-muted">{title}</p>
             <ul className="flex flex-col gap-2">
                 {links.map((link) => (
                     <li key={link.href}>

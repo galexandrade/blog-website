@@ -135,7 +135,7 @@ export async function brandImage({
                         style={{
                             fontFamily: 'JetBrains Mono',
                             fontSize: 24,
-                            color: colors.signal,
+                            color: colors.muted,
                             marginBottom: 20
                         }}
                     >
