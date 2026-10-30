@@ -1,6 +1,7 @@
 ---
 path: 2020-the-year-of-10x-growth
 date: 2020-12-31T06:00:00.000Z
+hideFromHome: true
 title: '2020, the year of 10x growth'
 description: >-
     A reflection on redefining growth in 2020 through health, family, and focused learning.

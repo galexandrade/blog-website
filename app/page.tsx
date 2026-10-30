@@ -5,7 +5,7 @@ import { FeaturedPost, PostList } from '@/app/components/blog/post-list';
 import { ButtonLink } from '@/app/components/brand/button-link';
 import { Eyebrow } from '@/app/components/brand/eyebrow';
 import { SectionHeading } from '@/app/components/brand/section-heading';
-import { getLatestPosts, toPostSummary } from '@/app/lib/blog';
+import { getHomepagePosts, toPostSummary } from '@/app/lib/blog';
 import { socialLinks } from '@/app/lib/site';
 
 const proofPoints = [
@@ -16,7 +16,7 @@ const proofPoints = [
 ];
 
 export default function Home() {
-    const [latestPost, ...recentPosts] = getLatestPosts(5).map(toPostSummary);
+    const [latestPost, ...recentPosts] = getHomepagePosts(5).map(toPostSummary);
 
     return (
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">

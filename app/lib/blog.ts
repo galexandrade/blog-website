@@ -105,6 +105,12 @@ export function getLatestPosts(count: number = 3): BlogPost[] {
     return allPosts.slice(0, count);
 }
 
+export function getHomepagePosts(count: number): BlogPost[] {
+    return getAllPosts()
+        .filter((post) => !post.frontmatter.hideFromHome)
+        .slice(0, count);
+}
+
 export function searchPosts(query: string): BlogPost[] {
     const allPosts = getAllPosts();
     const lowerQuery = query.toLowerCase();

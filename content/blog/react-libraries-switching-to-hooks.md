@@ -1,6 +1,7 @@
 ---
 path: react-libraries-switching-to-hooks
 date: 2020-02-06T06:00:00.000Z
+hideFromHome: true
 title: React libraries being empowered by hooks
 description: >-
     We will take a look at some of the most common libraries, seeing how they
