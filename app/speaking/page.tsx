@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowRight, ArrowUpRight, Download } from 'lucide-react';
 import { ButtonLink } from '@/app/components/brand/button-link';
+import { CopyButton } from '@/app/components/brand/copy-button';
 import { Eyebrow } from '@/app/components/brand/eyebrow';
 import { SectionHeading } from '@/app/components/brand/section-heading';
 import {
@@ -10,6 +12,7 @@ import {
     type Talk
 } from '@/app/lib/talks';
 import { socialLinks } from '@/app/lib/site';
+import { bioText, headshot, speakerBios, wordCount } from '@/app/lib/speaker';
 
 const description =
     'Talks by Alex Andrade on design systems, AI and frontend architecture, from Saskatoon Dev Talks to Tech Tank Toronto. Recordings, topics and how to invite me.';
@@ -86,6 +89,80 @@ export default function SpeakingPage() {
                         </li>
                     ))}
                 </ul>
+            </section>
+
+            <section
+                id="speaker-kit"
+                aria-labelledby="speaker-kit-title"
+                className="mb-24 scroll-mt-24 md:mb-32"
+            >
+                <SectionHeading
+                    id="speaker-kit-title"
+                    index="03"
+                    title="Speaker kit"
+                />
+                <div className="grid gap-12 md:grid-cols-[1fr_2fr] md:gap-16">
+                    <div className="flex flex-col gap-5 md:sticky md:top-24 md:self-start">
+                        <div className="crop-marks p-4 [--crop-len:24px] [--crop-w:3px]">
+                            <div className="relative aspect-[1230/1278] w-full overflow-hidden bg-surface">
+                                <Image
+                                    src={headshot.src}
+                                    alt="Headshot of Alex Andrade"
+                                    fill
+                                    sizes="(min-width: 768px) 320px, 90vw"
+                                    className="object-cover"
+                                />
+                            </div>
+                        </div>
+                        <ButtonLink
+                            href={headshot.src}
+                            variant="secondary"
+                            className="gap-2 self-start"
+                            download
+                        >
+                            <Download size={18} aria-hidden="true" />
+                            Download headshot
+                        </ButtonLink>
+                        <p className="font-mono text-xs text-muted">
+                            JPG · {headshot.width}×{headshot.height}
+                        </p>
+                    </div>
+
+                    <ul className="flex flex-col border-t border-line">
+                        {speakerBios.map((bio) => {
+                            const text = bioText(bio);
+
+                            return (
+                                <li
+                                    key={bio.length}
+                                    className="flex flex-col gap-4 border-b border-line py-8 first:pt-6"
+                                >
+                                    <div className="flex flex-wrap items-center justify-between gap-3">
+                                        <h3 className="font-mono text-sm text-signal-text">
+                                            {bio.length} bio
+                                            <span className="text-muted">
+                                                {' '}
+                                                · {wordCount(text)} words
+                                            </span>
+                                        </h3>
+                                        <CopyButton
+                                            text={text}
+                                            label={`Copy ${bio.length} bio`}
+                                        />
+                                    </div>
+                                    {bio.paragraphs.map((paragraph) => (
+                                        <p
+                                            key={paragraph}
+                                            className="text-lg leading-relaxed text-muted"
+                                        >
+                                            {paragraph}
+                                        </p>
+                                    ))}
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
             </section>
 
             <section className="border border-foreground p-8 md:p-12">
