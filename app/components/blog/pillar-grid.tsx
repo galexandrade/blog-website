@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { formatDate } from '@/app/lib/utils';
+import { cn, formatDate } from '@/app/lib/utils';
 import type { Pillar } from '@/app/lib/pillars';
 import type { BlogPostSummary } from '@/app/types/blog';
 
@@ -10,6 +10,9 @@ interface PillarGridProps {
 
 /** The three content pillars, each opening with its "Start here" read */
 export function PillarGrid({ groups }: PillarGridProps) {
+    // Columns share subgrid rows so headers, cards and lists line up
+    const hasMore = groups.some(({ posts }) => posts.length > 1);
+
     return (
         <ul className="grid gap-px border border-line bg-line md:grid-cols-3">
             {groups.map(({ pillar, posts }, index) => {
@@ -18,7 +21,10 @@ export function PillarGrid({ groups }: PillarGridProps) {
                 return (
                     <li
                         key={pillar.slug}
-                        className="flex flex-col gap-6 bg-background p-6 md:p-8"
+                        className={cn(
+                            'flex flex-col gap-6 bg-background p-6 md:grid md:grid-rows-subgrid md:p-8',
+                            hasMore ? 'md:row-span-3' : 'md:row-span-2'
+                        )}
                     >
                         <div className="flex flex-col gap-3">
                             <p className="font-mono text-xs text-muted">
@@ -35,7 +41,7 @@ export function PillarGrid({ groups }: PillarGridProps) {
                         {first ? (
                             <Link
                                 href={`/blog/${first.slug}`}
-                                className="crop-marks group mt-auto flex flex-col gap-2 p-4 [--crop-len:12px]"
+                                className="crop-marks group flex flex-col gap-2 p-4 [--crop-len:12px]"
                             >
                                 <span className="font-mono text-xs text-signal-text">
                                     {first.frontmatter.startHere
@@ -50,7 +56,7 @@ export function PillarGrid({ groups }: PillarGridProps) {
                         ) : (
                             <Link
                                 href="#newsletter"
-                                className="group mt-auto flex flex-col gap-2 border border-dashed border-line p-4"
+                                className="group flex flex-col gap-2 border border-dashed border-line p-4"
                             >
                                 <span className="font-mono text-xs text-muted">
                                     in progress
