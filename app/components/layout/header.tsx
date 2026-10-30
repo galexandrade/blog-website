@@ -1,33 +1,56 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ThemeToggle } from '@/app/components/layout/theme-toggle';
+import { Mark } from '@/app/components/brand/logo';
+import { cn } from '@/app/lib/utils';
+
+const navItems = [
+    { label: 'Writing', href: '/blog' },
+    { label: 'Work', href: '/#work' },
+    { label: 'About', href: '/about' }
+];
 
 export function Header() {
+    const pathname = usePathname();
+
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-slate-300/70 bg-slate-100/95 backdrop-blur supports-[backdrop-filter]:bg-slate-100/75 dark:border-slate-800 dark:bg-slate-950/95 dark:supports-[backdrop-filter]:bg-slate-950/75">
-            <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
-                <Link href="/" className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-400 text-base font-semibold text-white shadow-sm">
-                        {'</>'}
-                    </div>
-                    <div className="leading-tight">
-                        <p className="text-xl font-bold text-slate-900 dark:text-slate-100">
-                            Alex Andrade - Blog
-                        </p>
-                        <p className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                            Design Systems & Front-end
-                        </p>
-                    </div>
+        <header className="sticky top-0 z-50 w-full border-b border-line bg-background/90 backdrop-blur">
+            <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+                <Link
+                    href="/"
+                    className="inline-flex items-center gap-2.5"
+                    aria-label="Alex Andrade, home"
+                >
+                    <Mark size={26} />
+                    <span className="hidden text-lg font-bold tracking-tight sm:inline">
+                        alex andrade
+                    </span>
                 </Link>
 
-                <nav className="flex items-center gap-6">
-                    <Link
-                        href="/about"
-                        className="text-sm font-medium text-slate-600 underline-offset-4 transition-colors hover:text-slate-900 hover:underline dark:text-slate-400 dark:hover:text-slate-100"
-                    >
-                        About
-                    </Link>
+                <nav className="flex items-center gap-1 sm:gap-2">
+                    {navItems.map((item, index) => {
+                        const isActive =
+                            item.href !== '/#work' &&
+                            pathname.startsWith(item.href);
+                        return (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                aria-current={isActive ? 'page' : undefined}
+                                className={cn(
+                                    'px-2 py-2 font-mono text-[13px] transition-colors hover:text-foreground',
+                                    isActive ? 'text-foreground' : 'text-muted'
+                                )}
+                            >
+                                <span className="hidden text-signal-text sm:inline">
+                                    0{index + 1}{' '}
+                                </span>
+                                {item.label}
+                            </Link>
+                        );
+                    })}
                     <ThemeToggle />
                 </nav>
             </div>

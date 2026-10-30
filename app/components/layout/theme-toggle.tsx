@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { Moon, Sun } from 'lucide-react';
 
 type Theme = 'light' | 'dark';
 
@@ -45,17 +46,22 @@ export function ThemeToggle() {
         setTheme(nextTheme);
     };
 
-    // Render nothing until the theme is resolved to avoid icon flicker.
-    if (!theme) return null;
+    // Reserve the slot until the theme is resolved to avoid icon flicker and
+    // a layout shift in the header.
+    if (!theme) return <span className="ml-1 inline-block h-11 w-11" />;
 
     return (
         <button
             type="button"
             onClick={toggleTheme}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-lg text-slate-700 transition-colors hover:bg-slate-200/80 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+            className="ml-1 inline-flex h-11 w-11 items-center justify-center text-muted transition-colors hover:text-foreground"
         >
-            {theme === 'dark' ? '☀' : '☾'}
+            {theme === 'dark' ? (
+                <Sun size={18} aria-hidden="true" />
+            ) : (
+                <Moon size={18} aria-hidden="true" />
+            )}
         </button>
     );
 }

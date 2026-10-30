@@ -4,8 +4,18 @@ export const siteUrl = (
 
 export const siteName = 'Alex Andrade';
 
+export const siteTitle =
+    'Alex Andrade · Design systems that humans and AI agents get right';
+
 export const siteDescription =
-    'Personal blog and portfolio showcasing expertise in Design Systems, React, and TypeScript';
+    'Alex Andrade leads the design system team at 7shifts and created Sous Chef. Writing on design systems, AI and MCP, and frontend architecture.';
+
+export const socialLinks = {
+    linkedin: 'https://www.linkedin.com/in/palexandrade',
+    github: 'https://github.com/galexandrade',
+    resume: 'https://app.rezme.io/alex-andrade',
+    sousChef: 'https://sous-chef.7shifts.software/'
+};
 
 export function absoluteUrl(path: string = '/'): string {
     if (/^https?:\/\//.test(path)) {
