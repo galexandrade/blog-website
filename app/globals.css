@@ -2,38 +2,169 @@
 @plugin '@tailwindcss/typography';
 @custom-variant dark (&:where(.dark, .dark *));
 
+/*
+ * Brand tokens ("Spec" identity). Components use the semantic names only;
+ * light/dark swap here so there is no need for dark: variants on colors.
+ */
 :root {
-    --background: #f1f5f9;
-    --foreground: #0f172a;
+    --background: #f4f4f0;
+    --surface: #ffffff;
+    --foreground: #111111;
+    --muted: #555550;
+    --line: #d9d9d2;
+    /* Fills, crop marks and large accents */
+    --signal: #ff5a1f;
+    /* Accent text and links; passes 4.5:1 on background and surface */
+    --signal-text: #c2410c;
+    --primary: #111111;
+    --on-primary: #f4f4f0;
+    --code-bg: #111111;
 }
 
 html.dark {
-    --background: #081532;
-    --foreground: #e2e8f0;
+    --background: #111111;
+    --surface: #1c1c1a;
+    --foreground: #f4f4f0;
+    --muted: #a1a19a;
+    --line: #2e2e2b;
+    --signal: #ff6a33;
+    --signal-text: #ff6a33;
+    --primary: #ff6a33;
+    --on-primary: #111111;
+    --code-bg: #0a0a0a;
 }
 
 @theme inline {
     --color-background: var(--background);
+    --color-surface: var(--surface);
     --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+    --color-muted: var(--muted);
+    --color-line: var(--line);
+    --color-signal: var(--signal);
+    --color-signal-text: var(--signal-text);
+    --color-primary: var(--primary);
+    --color-on-primary: var(--on-primary);
+    --font-sans: var(--font-space-grotesk);
+    --font-mono: var(--font-jetbrains-mono);
 }
 
-body {
-    background: var(--background);
+/* Base rules live in the base layer so Tailwind utilities can override them */
+@layer base {
+    body {
+        background: var(--background);
+        color: var(--foreground);
+        font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+        transition:
+            background-color 0.25s ease,
+            color 0.25s ease;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    ::selection {
+        background: color-mix(in srgb, var(--signal) 30%, transparent);
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--signal);
+        outline-offset: 4px;
+    }
+}
+
+/*
+ * The brand element: orange crop marks framing whatever matters.
+ * Size with --crop-len / --crop-w; drawn as eight gradients so it needs no
+ * extra markup and never takes part in layout.
+ */
+@layer components {
+    .crop-marks {
+        --crop-len: 14px;
+        --crop-w: 2px;
+        --crop-c: var(--signal);
+        position: relative;
+    }
+
+    .crop-marks::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+            linear-gradient(var(--crop-c), var(--crop-c)) top left /
+                var(--crop-len) var(--crop-w) no-repeat,
+            linear-gradient(var(--crop-c), var(--crop-c)) top left /
+                var(--crop-w) var(--crop-len) no-repeat,
+            linear-gradient(var(--crop-c), var(--crop-c)) top right /
+                var(--crop-len) var(--crop-w) no-repeat,
+            linear-gradient(var(--crop-c), var(--crop-c)) top right /
+                var(--crop-w) var(--crop-len) no-repeat,
+            linear-gradient(var(--crop-c), var(--crop-c)) bottom left /
+                var(--crop-len) var(--crop-w) no-repeat,
+            linear-gradient(var(--crop-c), var(--crop-c)) bottom left /
+                var(--crop-w) var(--crop-len) no-repeat,
+            linear-gradient(var(--crop-c), var(--crop-c)) bottom right /
+                var(--crop-len) var(--crop-w) no-repeat,
+            linear-gradient(var(--crop-c), var(--crop-c)) bottom right /
+                var(--crop-w) var(--crop-len) no-repeat;
+    }
+}
+
+/* Typography plugin wired to the brand tokens (works in both themes) */
+.prose-brand {
+    --tw-prose-body: var(--foreground);
+    --tw-prose-headings: var(--foreground);
+    --tw-prose-lead: var(--muted);
+    --tw-prose-links: var(--signal-text);
+    --tw-prose-bold: var(--foreground);
+    --tw-prose-counters: var(--muted);
+    --tw-prose-bullets: var(--signal);
+    --tw-prose-hr: var(--line);
+    --tw-prose-quotes: var(--foreground);
+    --tw-prose-quote-borders: var(--signal);
+    --tw-prose-captions: var(--muted);
+    --tw-prose-code: var(--foreground);
+    --tw-prose-pre-code: #e8e8e3;
+    --tw-prose-pre-bg: var(--code-bg);
+    --tw-prose-th-borders: var(--line);
+    --tw-prose-td-borders: var(--line);
+}
+
+.prose-brand :where(h1, h2, h3, h4) {
+    letter-spacing: -0.025em;
+}
+
+.prose-brand :where(a) {
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+}
+
+.prose-brand :where(a):hover {
     color: var(--foreground);
-    font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-    transition:
-        background-color 0.25s ease,
-        color 0.25s ease;
 }
 
-a {
-    color: inherit;
+.prose-brand :where(:not(pre) > code) {
+    font-family: var(--font-jetbrains-mono), monospace;
+    font-size: 0.875em;
+    font-weight: 500;
+    padding: 0.15em 0.4em;
+    background: var(--surface);
+    border: 1px solid var(--line);
 }
 
-::selection {
-    background: rgb(99 102 241 / 0.28);
+.prose-brand :where(:not(pre) > code)::before,
+.prose-brand :where(:not(pre) > code)::after {
+    content: none;
+}
+
+.prose-brand :where(pre) {
+    border-radius: 0;
+    font-family: var(--font-jetbrains-mono), monospace;
+}
+
+.prose-brand :where(img) {
+    border: 1px solid var(--line);
 }
 
 .markdown-content pre {
@@ -47,14 +178,30 @@ a {
     color: inherit;
 }
 
+.markdown-content pre[data-language] {
+    padding-top: 2.5rem;
+}
+
+.markdown-content pre[data-language]::before {
+    content: attr(data-language);
+    position: absolute;
+    top: 0.75rem;
+    left: 1.25rem;
+    font-family: var(--font-jetbrains-mono), monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: lowercase;
+    color: #ff6a33;
+}
+
 .markdown-content .hljs {
-    color: #d6deeb;
+    color: #e8e8e3;
     background: transparent;
 }
 
 .markdown-content .hljs-comment,
 .markdown-content .hljs-quote {
-    color: #7f8aa3;
+    color: #8a8a82;
     font-style: italic;
 }
 
@@ -64,7 +211,7 @@ a {
 .markdown-content .hljs-doctag,
 .markdown-content .hljs-section,
 .markdown-content .hljs-link {
-    color: #c792ea;
+    color: #ff8a5c;
 }
 
 .markdown-content .hljs-string,
@@ -72,7 +219,7 @@ a {
 .markdown-content .hljs-attribute,
 .markdown-content .hljs-addition,
 .markdown-content .hljs-template-tag {
-    color: #ecc48d;
+    color: #c9d98b;
 }
 
 .markdown-content .hljs-number,
@@ -80,13 +227,13 @@ a {
 .markdown-content .hljs-bullet,
 .markdown-content .hljs-meta,
 .markdown-content .hljs-meta-keyword {
-    color: #f78c6c;
+    color: #f2c46d;
 }
 
 .markdown-content .hljs-title,
 .markdown-content .hljs-function,
 .markdown-content .hljs-class .hljs-title {
-    color: #82aaff;
+    color: #9ec3ff;
 }
 
 .markdown-content .hljs-variable,
@@ -94,10 +241,10 @@ a {
 .markdown-content .hljs-selector-class,
 .markdown-content .hljs-selector-attr,
 .markdown-content .hljs-type {
-    color: #ffcb8b;
+    color: #f2c46d;
 }
 
 .markdown-content .hljs-built_in,
 .markdown-content .hljs-params {
-    color: #addb67;
+    color: #d4d4cf;
 }

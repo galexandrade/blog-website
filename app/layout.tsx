@@ -1,51 +1,48 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/app/components/layout/header';
 import { Footer } from '@/app/components/layout/footer';
 import { JsonLd } from '@/app/components/seo/json-ld';
-import { person, siteUrl, website } from '@/app/lib/site';
+import {
+    person,
+    siteDescription,
+    siteTitle,
+    siteUrl,
+    website
+} from '@/app/lib/site';
 
-const geistSans = Geist({
-    variable: '--font-geist-sans',
+const spaceGrotesk = Space_Grotesk({
+    variable: '--font-space-grotesk',
     subsets: ['latin']
 });
 
-const geistMono = Geist_Mono({
-    variable: '--font-geist-mono',
+const jetbrainsMono = JetBrains_Mono({
+    variable: '--font-jetbrains-mono',
     subsets: ['latin']
 });
 
 export const metadata: Metadata = {
     metadataBase: new URL(siteUrl),
     title: {
-        default: 'Alex Andrade - Senior Frontend Engineer',
+        default: siteTitle,
         template: '%s | Alex Andrade'
     },
-    description:
-        'Personal blog and portfolio showcasing expertise in Design Systems, React, and TypeScript',
+    description: siteDescription,
+    alternates: {
+        types: { 'application/rss+xml': '/rss.xml' }
+    },
     openGraph: {
         siteName: 'Alex Andrade',
         type: 'website',
         locale: 'en_US',
-        title: 'Alex Andrade - Senior Frontend Engineer',
-        description:
-            'Personal blog and portfolio showcasing expertise in Design Systems, React, and TypeScript',
-        images: [
-            {
-                url: '/assets/profile.png',
-                width: 1200,
-                height: 630,
-                alt: 'Alex Andrade - Senior Frontend Engineer'
-            }
-        ]
+        title: siteTitle,
+        description: siteDescription
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Alex Andrade - Senior Frontend Engineer',
-        description:
-            'Personal blog and portfolio showcasing expertise in Design Systems, React, and TypeScript',
-        images: ['/assets/profile.png']
+        title: siteTitle,
+        description: siteDescription
     }
 };
 
@@ -58,7 +55,7 @@ export default function RootLayout({
         <html
             lang="en"
             suppressHydrationWarning
-            className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+            className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
         >
             <head>
                 <script

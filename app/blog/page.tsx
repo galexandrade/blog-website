@@ -1,15 +1,16 @@
 import type { Metadata } from 'next';
-import { BlogCard } from '@/app/components/blog/blog-card';
+import { PostList } from '@/app/components/blog/post-list';
 import { getAllPosts, toPostSummary } from '@/app/lib/blog';
 
+const description =
+    'Writing on design systems, AI and MCP for design systems, and frontend architecture.';
+
 export const metadata: Metadata = {
-    title: 'Blog',
-    description:
-        'Latest insights on design systems, component architecture, and front-end development',
+    title: 'Writing',
+    description,
     openGraph: {
-        title: 'Blog | Alex Andrade',
-        description:
-            'Latest insights on design systems, component architecture, and front-end development',
+        title: 'Writing | Alex Andrade',
+        description,
         type: 'website',
         url: '/blog'
     }
@@ -19,29 +20,29 @@ export default function BlogPage() {
     const posts = getAllPosts().map(toPostSummary);
 
     return (
-        <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
-            <div className="mb-8 flex items-center gap-4">
-                <h1 className="text-5xl font-bold text-slate-900 dark:text-slate-100 md:text-6xl">
-                    Featured Posts
+        <div className="mx-auto w-full max-w-6xl px-4 pb-24 pt-14 sm:px-6 md:pt-20">
+            <header className="mb-12 flex flex-col gap-4">
+                <p className="font-mono text-[13px] text-signal-text">
+                    {'// writing'}
+                    <span className="text-muted">
+                        {' '}
+                        · {String(posts.length).padStart(2, '0')} posts
+                    </span>
+                </p>
+                <h1 className="text-5xl font-bold tracking-[-0.035em] md:text-7xl">
+                    Writing
                 </h1>
-                <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-full bg-indigo-600 px-3 text-xl font-semibold !text-white">
-                    {posts.length}
-                </span>
-            </div>
-            <p className="mb-10 text-xl text-slate-600 dark:text-slate-400 md:text-2xl">
-                Latest insights on design systems, component architecture, and
-                front-end development
-            </p>
+                <p className="max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
+                    Design systems, AI and MCP, and frontend architecture: what
+                    I learn building Sous Chef at 7shifts.
+                </p>
+            </header>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {posts.map((post, index) => (
-                    <BlogCard key={post.slug} post={post} index={index} />
-                ))}
-            </div>
-
-            {posts.length === 0 && (
-                <p className="py-12 text-center text-xl text-slate-600 dark:text-slate-400">
-                    No blog posts found.
+            {posts.length > 0 ? (
+                <PostList posts={posts} />
+            ) : (
+                <p className="py-12 text-center text-xl text-muted">
+                    No posts yet.
                 </p>
             )}
         </div>

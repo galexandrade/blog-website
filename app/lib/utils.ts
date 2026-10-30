@@ -7,12 +7,17 @@ export function formatDate(dateInput: string | Date): string {
         }
 
         if (dateInput instanceof Date) {
-            return format(dateInput, 'MMMM dd, yyyy');
+            return format(dateInput, 'MMMM d, yyyy');
         }
 
+        // Format the calendar date as written, not the instant: frontmatter
+        // dates are UTC midnight, which is the previous day west of UTC
         const normalizedDate = String(dateInput);
-        const date = parseISO(normalizedDate);
-        return format(date, 'MMMM dd, yyyy');
+        const calendarDate = /^\d{4}-\d{2}-\d{2}/.test(normalizedDate)
+            ? normalizedDate.slice(0, 10)
+            : normalizedDate;
+        const date = parseISO(calendarDate);
+        return format(date, 'MMMM d, yyyy');
     } catch {
         return 'Unknown date';
     }

@@ -1,127 +1,238 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { BookA } from 'lucide-react';
-import { BlogCard } from '@/app/components/blog/blog-card';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { FeaturedPost, PostList } from '@/app/components/blog/post-list';
 import { getLatestPosts, toPostSummary } from '@/app/lib/blog';
-import IconSevenShifts from './components/ui/IconSevenShifts';
-import IconLinkedIn from './components/ui/IconLinkedIn';
-import IconPDF from './components/ui/IconPDF';
+import { socialLinks } from '@/app/lib/site';
+
+const proofPoints = [
+    { value: '15+', label: 'years building software' },
+    { value: '100+', label: 'components in Sous Chef' },
+    { value: '1st', label: 'React meetup in the prairies' },
+    { value: 'BR → CA', label: 'from Brazil to Saskatoon, 2019' }
+];
 
 export default function Home() {
-    const latestPosts = getLatestPosts(3).map(toPostSummary);
-    const resources = [
-        {
-            title: 'Blog posts',
-            description:
-                'Articles and case-studies on design systems, architecture, and front-end development.',
-            icon: <BookA size={22} />,
-            link: '/blog'
-        },
-        {
-            title: 'Resume',
-            description: 'My professional experience and skills at a glance.',
-            icon: <IconPDF size={22} />,
-            link: 'https://app.rezme.io/alex-andrade'
-        },
-        {
-            title: 'LinkedIn',
-            description:
-                'Connect with me on LinkedIn and see my professional background.',
-            icon: <IconLinkedIn size={22} />,
-            link: 'https://www.linkedin.com/in/palexandrade'
-        },
-        {
-            title: 'Sous Chef',
-            description:
-                "I'm building Sous Chef, 7shifts design system. Check it out!",
-            icon: <IconSevenShifts size={22} />,
-            link: 'https://sous-chef.7shifts.software/'
-        }
-    ];
+    const [latestPost, ...recentPosts] = getLatestPosts(5).map(toPostSummary);
 
     return (
-        <div className="mx-auto w-full max-w-6xl px-4 pb-16 pt-12 sm:px-6">
-            <section className="mx-auto mb-16 max-w-4xl text-center">
-                <div className="mx-auto mb-8 h-32 w-32 overflow-hidden rounded-full">
-                    <Image
-                        src="/assets/profile-2.png"
-                        alt="Alex Andrade"
-                        width={128}
-                        height={128}
-                        className="h-full w-full object-cover"
-                        priority
-                    />
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+            <section className="grid items-center gap-12 pb-16 pt-14 md:grid-cols-[1.4fr_1fr] md:pb-24 md:pt-24">
+                <div className="flex flex-col gap-6">
+                    <p className="font-mono text-[13px] text-signal-text">
+                        {'// design-systems · ai · frontend'}
+                    </p>
+                    <h1 className="text-[2.75rem] font-bold leading-[1.02] tracking-[-0.035em] sm:text-6xl lg:text-7xl">
+                        Design systems that humans and AI agents get right.
+                    </h1>
+                    <p className="max-w-xl text-lg leading-relaxed text-muted md:text-xl">
+                        I&apos;m Alex Andrade. I lead the design system team at
+                        7shifts, created Sous Chef, and founded the Saskatoon
+                        React Meetup.
+                    </p>
+                    <div className="flex flex-wrap gap-3 pt-2">
+                        {latestPost && (
+                            <Link
+                                href={`/blog/${latestPost.slug}`}
+                                className="inline-flex min-h-11 items-center gap-2 bg-primary px-5 py-3 font-semibold text-on-primary transition-opacity hover:opacity-90"
+                            >
+                                Read the latest
+                                <ArrowRight size={18} aria-hidden="true" />
+                            </Link>
+                        )}
+                        <Link
+                            href="/#work"
+                            className="inline-flex min-h-11 items-center border border-foreground px-5 py-3 font-semibold transition-colors hover:bg-foreground hover:text-background"
+                        >
+                            See the work
+                        </Link>
+                    </div>
                 </div>
-                <h1 className="mb-6 text-5xl font-bold tracking-tight text-slate-900 dark:text-slate-100 md:text-6xl">
-                    Hey! I&apos;m Alex, a Senior Frontend Engineer
-                </h1>
-                <p className="mx-auto mb-8 max-w-3xl text-xl leading-relaxed text-slate-600 dark:text-slate-400 md:text-2xl">
-                    I specialize in{' '}
-                    <span className="font-semibold text-indigo-500 dark:text-indigo-400">
-                        Design Systems
-                    </span>
-                    and{' '}
-                    <span className="font-semibold text-indigo-500 dark:text-indigo-400">
-                        Front-end Development
-                    </span>
-                    , building scalable component libraries and beautiful user
-                    experiences. I also founded the{' '}
-                    <span className="font-semibold text-indigo-500 dark:text-indigo-400">
-                        Saskatoon React Meetup
-                    </span>{' '}
-                    to foster frontend innovation in the prairies.
-                </p>
-                <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-600 dark:text-slate-400 md:text-2xl">
-                    This is where I share my learnings, insights, and
-                    explorations in modern web development, component
-                    architecture, and everything that makes great user
-                    interfaces.
-                </p>
+
+                <div className="crop-marks mx-auto w-full max-w-sm p-4 [--crop-len:28px] [--crop-w:3px] md:p-5">
+                    <div className="relative aspect-square w-full overflow-hidden bg-surface">
+                        <Image
+                            src="/assets/profile-2.png"
+                            alt="Alex Andrade"
+                            fill
+                            sizes="(min-width: 768px) 384px, 90vw"
+                            className="object-cover"
+                            priority
+                        />
+                    </div>
+                </div>
             </section>
 
-            <section className="mb-24 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-                {resources.map((item) => (
-                    <Link
-                        key={item.title}
-                        href={item.link ?? '#'}
-                        {...(item.link?.startsWith('https') && {
-                            target: '_blank',
-                            rel: 'noopener noreferrer'
-                        })}
-                        className="rounded-2xl border border-slate-300/70 bg-slate-100/70 px-6 py-7 transition-colors hover:bg-white dark:border-slate-700 dark:bg-slate-800/70 dark:hover:bg-slate-800"
+            <section
+                aria-label="At a glance"
+                className="grid grid-cols-2 gap-px border-y border-line bg-line md:grid-cols-4"
+            >
+                {proofPoints.map((point) => (
+                    <div
+                        key={point.label}
+                        className="flex flex-col gap-1 bg-background px-4 py-6 md:px-6"
                     >
-                        <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-slate-200 text-indigo-500 dark:bg-slate-700/60 dark:text-indigo-400">
-                            {item.icon}
-                        </div>
-                        <h2 className="mb-3 text-xl font-bold leading-tight text-slate-900 dark:text-slate-100">
-                            {item.title}
-                        </h2>
-                        <p className="text-lg text-slate-600 dark:text-slate-400">
-                            {item.description}
-                        </p>
-                    </Link>
+                        <span className="text-3xl font-bold tracking-tight md:text-4xl">
+                            {point.value}
+                        </span>
+                        <span className="font-mono text-xs text-muted">
+                            {point.label}
+                        </span>
+                    </div>
                 ))}
             </section>
 
-            <section>
-                <div className="mb-4 flex items-center gap-4">
-                    <h2 className="text-5xl font-bold text-slate-900 dark:text-slate-100 md:text-6xl">
-                        Featured Posts
-                    </h2>
-                    <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-full bg-indigo-600 px-3 text-xl font-semibold !text-white">
-                        {latestPosts.length}
-                    </span>
-                </div>
-                <p className="mb-10 text-xl text-slate-600 dark:text-slate-400 md:text-2xl">
-                    Latest insights on design systems, component architecture,
-                    and front-end development
-                </p>
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {latestPosts.map((post, index) => (
-                        <BlogCard key={post.slug} post={post} index={index} />
-                    ))}
+            {latestPost && (
+                <section className="py-20 md:py-28">
+                    <SectionHeading index="01" title="Writing" />
+                    <FeaturedPost post={latestPost} />
+                    <div className="mt-12">
+                        <PostList posts={recentPosts} />
+                    </div>
+                    <Link
+                        href="/blog"
+                        className="mt-8 inline-flex min-h-11 items-center gap-2 font-mono text-sm text-signal-text hover:text-foreground"
+                    >
+                        All writing
+                        <ArrowRight size={16} aria-hidden="true" />
+                    </Link>
+                </section>
+            )}
+
+            <section id="work" className="scroll-mt-24 pb-20 md:pb-28">
+                <SectionHeading index="02" title="Work" />
+                <div className="grid gap-10 md:grid-cols-[1fr_1.1fr] md:items-center">
+                    <div className="flex flex-col gap-5">
+                        <p className="font-mono text-[13px] text-muted">
+                            7shifts · 2022 → now
+                        </p>
+                        <h3 className="text-3xl font-bold leading-tight tracking-tight md:text-4xl">
+                            Sous Chef, the 7shifts design system
+                        </h3>
+                        <p className="text-lg leading-relaxed text-muted">
+                            I led Sous Chef from the ground up: a React,
+                            TypeScript and Storybook foundation that turned a
+                            fragmented set of components into a themeable system
+                            of 100+ components. Chromatic visual tests run in
+                            CI, so every UI change is intentional.
+                        </p>
+                        <p className="text-lg leading-relaxed text-muted">
+                            Today I lead the design system team, working on
+                            semantic tokens, dark mode, and teaching AI agents
+                            to build with the system instead of around it.
+                        </p>
+                        <div className="flex flex-wrap gap-x-6 gap-y-2 pt-1">
+                            <a
+                                href={socialLinks.sousChef}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex min-h-11 items-center gap-1.5 font-semibold underline decoration-signal decoration-2 underline-offset-4 hover:text-signal-text"
+                            >
+                                Explore Sous Chef
+                                <ArrowUpRight size={18} aria-hidden="true" />
+                            </a>
+                            <Link
+                                href="/blog/teaching-ai-to-use-your-design-system"
+                                className="inline-flex min-h-11 items-center gap-1.5 font-semibold underline decoration-signal decoration-2 underline-offset-4 hover:text-signal-text"
+                            >
+                                How we taught AI to use it
+                                <ArrowRight size={18} aria-hidden="true" />
+                            </Link>
+                        </div>
+                    </div>
+                    <a
+                        href={socialLinks.sousChef}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="crop-marks block p-4 [--crop-len:24px] [--crop-w:3px]"
+                    >
+                        <Image
+                            src="/assets/sous-chef-2.png"
+                            alt="The Sous Chef documentation homepage"
+                            width={1038}
+                            height={798}
+                            sizes="(min-width: 768px) 560px, 100vw"
+                            className="w-full border border-line"
+                        />
+                    </a>
                 </div>
             </section>
+
+            <section className="pb-20 md:pb-28">
+                <SectionHeading index="03" title="Community" />
+                <div className="grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-center">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden border border-line">
+                        <Image
+                            src="/assets/saskatoon-react-meetup.jpg"
+                            alt="A full room at the Saskatoon React Meetup, hosted at the 7shifts office"
+                            fill
+                            sizes="(min-width: 768px) 560px, 100vw"
+                            className="object-cover"
+                        />
+                    </div>
+                    <div className="flex flex-col gap-5">
+                        <p className="font-mono text-[13px] text-muted">
+                            Saskatoon, Canada
+                        </p>
+                        <h3 className="text-3xl font-bold leading-tight tracking-tight md:text-4xl">
+                            Saskatoon React Meetup
+                        </h3>
+                        <p className="text-lg leading-relaxed text-muted">
+                            I founded the first React meetup in the prairies to
+                            give local frontend developers a place to share what
+                            they are building and learn together. At 7shifts I
+                            also lead frontend guilds on React, TypeScript and
+                            accessibility.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section className="mb-20 border border-foreground p-8 md:mb-28 md:p-12">
+                <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+                    <div className="flex max-w-2xl flex-col gap-3">
+                        <p className="font-mono text-[13px] text-signal-text">
+                            {"// let's talk"}
+                        </p>
+                        <h2 className="text-3xl font-bold leading-tight tracking-tight md:text-4xl">
+                            Building a design system, or getting one ready for
+                            AI?
+                        </h2>
+                        <p className="text-lg text-muted">
+                            I&apos;m always up for talking tokens, testing
+                            strategy and MCP. Follow along or say hi.
+                        </p>
+                    </div>
+                    <div className="flex flex-wrap gap-3">
+                        <a
+                            href={socialLinks.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex min-h-11 items-center gap-2 bg-primary px-5 py-3 font-semibold text-on-primary transition-opacity hover:opacity-90"
+                        >
+                            Connect on LinkedIn
+                            <ArrowUpRight size={18} aria-hidden="true" />
+                        </a>
+                        <Link
+                            href="/rss.xml"
+                            className="inline-flex min-h-11 items-center border border-foreground px-5 py-3 font-semibold transition-colors hover:bg-foreground hover:text-background"
+                        >
+                            RSS feed
+                        </Link>
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+function SectionHeading({ index, title }: { index: string; title: string }) {
+    return (
+        <div className="mb-10 flex items-baseline gap-4 border-b border-foreground pb-4">
+            <span className="font-mono text-sm text-signal-text">{index}</span>
+            <h2 className="text-4xl font-bold tracking-tight md:text-5xl">
+                {title}
+            </h2>
         </div>
     );
 }
