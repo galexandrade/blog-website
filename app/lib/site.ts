@@ -17,6 +17,9 @@ export const socialLinks = {
     sousChef: 'https://sous-chef.7shifts.software/'
 };
 
+// Buttondown username. The signup form renders nowhere until this is set.
+export const buttondownUsername = 'alexandrade';
+
 export function absoluteUrl(path: string = '/'): string {
     if (/^https?:\/\//.test(path)) {
         return path;

@@ -9,6 +9,7 @@ import type { Metadata } from 'next';
 import { JsonLd } from '@/app/components/seo/json-ld';
 import { absoluteUrl, personId, websiteId } from '@/app/lib/site';
 import { PostTags } from '@/app/components/blog/post-list';
+import { NewsletterSignup } from '@/app/components/newsletter/newsletter-signup';
 
 interface BlogPostPageProps {
     params: Promise<{ slug: string }>;
@@ -125,6 +126,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <div
                     className="markdown-content prose prose-brand max-w-none text-[1.075rem] leading-8 prose-headings:font-bold prose-h2:mb-5 prose-h2:mt-14 prose-h2:text-3xl prose-h3:mb-4 prose-h3:mt-10 prose-h3:text-2xl prose-p:my-6 prose-li:my-2 prose-pre:my-8 prose-pre:px-5 prose-pre:py-4 prose-img:my-8"
                     dangerouslySetInnerHTML={{ __html: contentHtml }}
+                />
+
+                <NewsletterSignup
+                    id="post-newsletter"
+                    title="Enjoyed this? Get the next one by email"
+                    className="mt-16"
                 />
 
                 <aside className="mt-16 flex flex-col gap-5 border-t border-foreground pt-8 sm:flex-row sm:items-center">
