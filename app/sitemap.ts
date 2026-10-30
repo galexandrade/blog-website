@@ -10,6 +10,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: absoluteUrl('/'), changeFrequency: 'monthly', priority: 1 },
         { url: absoluteUrl('/about'), changeFrequency: 'yearly', priority: 0.8 },
         {
+            url: absoluteUrl('/system'),
+            changeFrequency: 'monthly',
+            priority: 0.6
+        },
+        {
             url: absoluteUrl('/blog'),
             lastModified: latestPostDate,
             changeFrequency: 'weekly',

@@ -4,6 +4,7 @@ import './globals.css';
 import { Header } from '@/app/components/layout/header';
 import { Footer } from '@/app/components/layout/footer';
 import { JsonLd } from '@/app/components/seo/json-ld';
+import { tokensCss } from '@/app/lib/tokens';
 import {
     person,
     siteDescription,
@@ -58,6 +59,10 @@ export default function RootLayout({
             className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
         >
             <head>
+                <style
+                    id="spec-tokens"
+                    dangerouslySetInnerHTML={{ __html: tokensCss() }}
+                />
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `(function(){try{var stored=localStorage.getItem('theme');var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;var isDark=stored?stored==='dark':prefersDark;document.documentElement.classList.toggle('dark',isDark);}catch(e){}})();`

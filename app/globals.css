@@ -3,37 +3,11 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * Brand tokens ("Spec" identity). Components use the semantic names only;
- * light/dark swap here so there is no need for dark: variants on colors.
+ * Brand color variables (--background, --signal, ...) are generated from
+ * app/lib/tokens.ts and injected in the root layout, so the tokens have one
+ * source. Components use the semantic names only; light and dark swap the
+ * values, so there is no need for dark: variants on colors.
  */
-:root {
-    --background: #f4f4f0;
-    --surface: #ffffff;
-    --foreground: #111111;
-    --muted: #555550;
-    --line: #d9d9d2;
-    /* Fills, crop marks and large accents */
-    --signal: #ff5a1f;
-    /* Accent text and links; passes 4.5:1 on background and surface */
-    --signal-text: #c2410c;
-    --primary: #111111;
-    --on-primary: #f4f4f0;
-    --code-bg: #111111;
-}
-
-html.dark {
-    --background: #111111;
-    --surface: #1c1c1a;
-    --foreground: #f4f4f0;
-    --muted: #a1a19a;
-    --line: #2e2e2b;
-    --signal: #ff6a33;
-    --signal-text: #ff6a33;
-    --primary: #ff6a33;
-    --on-primary: #111111;
-    --code-bg: #0a0a0a;
-}
-
 @theme inline {
     --color-background: var(--background);
     --color-surface: var(--surface);

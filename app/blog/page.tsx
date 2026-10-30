@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { PostList } from '@/app/components/blog/post-list';
+import { Eyebrow } from '@/app/components/brand/eyebrow';
 import { getAllPosts, toPostSummary } from '@/app/lib/blog';
 
 const description =
@@ -22,13 +23,13 @@ export default function BlogPage() {
     return (
         <div className="mx-auto w-full max-w-6xl px-4 pb-24 pt-14 sm:px-6 md:pt-20">
             <header className="mb-12 flex flex-col gap-4">
-                <p className="font-mono text-[13px] text-signal-text">
-                    {'// writing'}
+                <Eyebrow>
+                    writing
                     <span className="text-muted">
                         {' '}
                         · {String(posts.length).padStart(2, '0')} posts
                     </span>
-                </p>
+                </Eyebrow>
                 <h1 className="text-5xl font-bold tracking-[-0.035em] md:text-7xl">
                     Writing
                 </h1>
