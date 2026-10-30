@@ -3,6 +3,7 @@ import { markdownToHtml } from '@/app/lib/markdown';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { JsonLd } from '@/app/components/seo/json-ld';
+import { Eyebrow } from '@/app/components/brand/eyebrow';
 import { absoluteUrl, personId, websiteId } from '@/app/lib/site';
 
 export const metadata: Metadata = {
@@ -50,9 +51,7 @@ export default async function AboutPage() {
             />
             <div className="mx-auto max-w-3xl">
                 <header className="mb-12 flex flex-col gap-5 border-b border-foreground pb-10">
-                    <p className="font-mono text-[13px] text-signal-text">
-                        {'// about'}
-                    </p>
+                    <Eyebrow>about</Eyebrow>
                     <h1 className="text-5xl font-bold tracking-[-0.035em] md:text-7xl">
                         {aboutData.frontmatter.title}
                     </h1>

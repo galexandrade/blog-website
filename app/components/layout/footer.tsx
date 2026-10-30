@@ -6,6 +6,7 @@ const siteLinks = [
     { label: 'Writing', href: '/blog' },
     { label: 'Work', href: '/#work' },
     { label: 'About', href: '/about' },
+    { label: 'System', href: '/system' },
     { label: 'RSS', href: '/rss.xml' }
 ];
 
@@ -29,8 +30,21 @@ export function Footer() {
                 <FooterColumn title="site" links={siteLinks} />
                 <FooterColumn title="elsewhere" links={elsewhere} external />
             </div>
-            <div className="mx-auto w-full max-w-6xl px-4 pb-10 font-mono text-xs text-muted sm:px-6">
-                © {new Date().getFullYear()} Alex Andrade · Saskatoon, Canada
+            <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 pb-10 font-mono text-xs text-muted sm:flex-row sm:justify-between sm:px-6">
+                <span>
+                    © {new Date().getFullYear()} Alex Andrade · Saskatoon,
+                    Canada
+                </span>
+                <span>
+                    Built on{' '}
+                    <Link
+                        href="/system"
+                        className="text-foreground underline decoration-signal underline-offset-4 hover:text-signal-text"
+                    >
+                        Spec
+                    </Link>
+                    , this site&apos;s own design system
+                </span>
             </div>
         </footer>
     );

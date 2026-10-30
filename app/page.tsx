@@ -2,6 +2,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { FeaturedPost, PostList } from '@/app/components/blog/post-list';
+import { ButtonLink } from '@/app/components/brand/button-link';
+import { Eyebrow } from '@/app/components/brand/eyebrow';
+import { SectionHeading } from '@/app/components/brand/section-heading';
 import { getLatestPosts, toPostSummary } from '@/app/lib/blog';
 import { socialLinks } from '@/app/lib/site';
 
@@ -19,9 +22,7 @@ export default function Home() {
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
             <section className="grid items-center gap-12 pb-16 pt-14 md:grid-cols-[1.4fr_1fr] md:pb-24 md:pt-24">
                 <div className="flex flex-col gap-6">
-                    <p className="font-mono text-[13px] text-signal-text">
-                        {'// design-systems · ai · frontend'}
-                    </p>
+                    <Eyebrow>design-systems · ai · frontend</Eyebrow>
                     <h1 className="text-[2.75rem] font-bold leading-[1.02] tracking-[-0.035em] sm:text-6xl lg:text-7xl">
                         Design systems that humans and AI agents get right.
                     </h1>
@@ -32,20 +33,14 @@ export default function Home() {
                     </p>
                     <div className="flex flex-wrap gap-3 pt-2">
                         {latestPost && (
-                            <Link
-                                href={`/blog/${latestPost.slug}`}
-                                className="inline-flex min-h-11 items-center gap-2 bg-primary px-5 py-3 font-semibold text-on-primary transition-opacity hover:opacity-90"
-                            >
+                            <ButtonLink href={`/blog/${latestPost.slug}`}>
                                 Read the latest
                                 <ArrowRight size={18} aria-hidden="true" />
-                            </Link>
+                            </ButtonLink>
                         )}
-                        <Link
-                            href="/#work"
-                            className="inline-flex min-h-11 items-center border border-foreground px-5 py-3 font-semibold transition-colors hover:bg-foreground hover:text-background"
-                        >
+                        <ButtonLink href="/#work" variant="secondary">
                             See the work
-                        </Link>
+                        </ButtonLink>
                     </div>
                 </div>
 
@@ -122,22 +117,25 @@ export default function Home() {
                             to build with the system instead of around it.
                         </p>
                         <div className="flex flex-wrap gap-x-6 gap-y-2 pt-1">
-                            <a
+                            <ButtonLink
                                 href={socialLinks.sousChef}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex min-h-11 items-center gap-1.5 font-semibold underline decoration-signal decoration-2 underline-offset-4 hover:text-signal-text"
+                                variant="text"
+                                external
                             >
                                 Explore Sous Chef
                                 <ArrowUpRight size={18} aria-hidden="true" />
-                            </a>
-                            <Link
+                            </ButtonLink>
+                            <ButtonLink
                                 href="/blog/teaching-ai-to-use-your-design-system"
-                                className="inline-flex min-h-11 items-center gap-1.5 font-semibold underline decoration-signal decoration-2 underline-offset-4 hover:text-signal-text"
+                                variant="text"
                             >
                                 How we taught AI to use it
                                 <ArrowRight size={18} aria-hidden="true" />
-                            </Link>
+                            </ButtonLink>
+                            <ButtonLink href="/system" variant="text">
+                                This site runs on its own design system
+                                <ArrowRight size={18} aria-hidden="true" />
+                            </ButtonLink>
                         </div>
                     </div>
                     <a
@@ -191,9 +189,7 @@ export default function Home() {
             <section className="mb-20 border border-foreground p-8 md:mb-28 md:p-12">
                 <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                     <div className="flex max-w-2xl flex-col gap-3">
-                        <p className="font-mono text-[13px] text-signal-text">
-                            {"// let's talk"}
-                        </p>
+                        <Eyebrow>let&apos;s talk</Eyebrow>
                         <h2 className="text-3xl font-bold leading-tight tracking-tight md:text-4xl">
                             Building a design system, or getting one ready for
                             AI?
@@ -204,35 +200,16 @@ export default function Home() {
                         </p>
                     </div>
                     <div className="flex flex-wrap gap-3">
-                        <a
-                            href={socialLinks.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex min-h-11 items-center gap-2 bg-primary px-5 py-3 font-semibold text-on-primary transition-opacity hover:opacity-90"
-                        >
+                        <ButtonLink href={socialLinks.linkedin} external>
                             Connect on LinkedIn
                             <ArrowUpRight size={18} aria-hidden="true" />
-                        </a>
-                        <Link
-                            href="/rss.xml"
-                            className="inline-flex min-h-11 items-center border border-foreground px-5 py-3 font-semibold transition-colors hover:bg-foreground hover:text-background"
-                        >
+                        </ButtonLink>
+                        <ButtonLink href="/rss.xml" variant="secondary">
                             RSS feed
-                        </Link>
+                        </ButtonLink>
                     </div>
                 </div>
             </section>
-        </div>
-    );
-}
-
-function SectionHeading({ index, title }: { index: string; title: string }) {
-    return (
-        <div className="mb-10 flex items-baseline gap-4 border-b border-foreground pb-4">
-            <span className="font-mono text-sm text-signal-text">{index}</span>
-            <h2 className="text-4xl font-bold tracking-tight md:text-5xl">
-                {title}
-            </h2>
         </div>
     );
 }

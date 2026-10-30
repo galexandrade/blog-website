@@ -2,14 +2,16 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { ImageResponse } from 'next/og';
 import { markPaths } from '@/app/components/brand/logo';
+import { colorValue } from '@/app/lib/tokens';
 
 export const ogSize = { width: 1200, height: 630 };
 
+// Share images always use the dark theme
 const colors = {
-    ground: '#111111',
-    ink: '#F4F4F0',
-    muted: '#A1A19A',
-    signal: '#FF6A33'
+    ground: colorValue('background', 'dark'),
+    ink: colorValue('foreground', 'dark'),
+    muted: colorValue('muted', 'dark'),
+    signal: colorValue('signal', 'dark')
 };
 
 const fontsDir = join(process.cwd(), 'app/_og/fonts');
