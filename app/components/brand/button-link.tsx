@@ -16,6 +16,8 @@ interface ButtonLinkProps {
     variant?: ButtonLinkVariant;
     /** Opens in a new tab; use for links that leave the site */
     external?: boolean;
+    /** Downloads the file instead of navigating to it */
+    download?: boolean;
     className?: string;
     children: React.ReactNode;
 }
@@ -25,6 +27,7 @@ export function ButtonLink({
     href,
     variant = 'primary',
     external = false,
+    download = false,
     className,
     children
 }: ButtonLinkProps) {
@@ -42,6 +45,14 @@ export function ButtonLink({
                 rel="noopener noreferrer"
                 className={classes}
             >
+                {children}
+            </a>
+        );
+    }
+
+    if (download) {
+        return (
+            <a href={href} download className={classes}>
                 {children}
             </a>
         );
