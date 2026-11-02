@@ -3,7 +3,7 @@ pillar: ai-ready
 title: Auditing our design system MCP
 description: Our design system MCP server seemed to work. Then I let a blind agent build from it and found out what it was actually handing agents.
 date: 2026-11-02
-image: /assets/auditing-design-system-mcp/TODO-cover-image.png # TODO: add cover image
+image: /assets/auditing-design-system-mcp/cover.jpg
 tags:
   - Design Systems
   - AI
@@ -13,7 +13,7 @@ tags:
 
 An MCP server that seems to work can still be handing agents broken answers. The only way to know is to audit what the agent actually receives, and the best way to do that is to let a blind agent build from it.
 
-![TODO: cover image alt text](/assets/auditing-design-system-mcp/TODO-cover-image.png)
+![A sous chef tasting a dish at the kitchen pass before it goes out](/assets/auditing-design-system-mcp/cover.jpg)
 
 A month ago I wrote about [teaching AI to use your design system](https://www.alexandrade.dev/blog/teaching-ai-to-use-your-design-system): how we gave agents access to Sous Chef, the 7shifts design system, through our own MCP server. We tested it by hand, and it seemed to work. Done, right?
 
@@ -47,7 +47,7 @@ Reading docs finds contradictions. Building from them finds missing information.
 
 After every batch of fixes I ran the exact same method again and tracked each earlier finding as fixed, partly fixed or still open. This turned out to matter a lot, because fixes introduce their own bugs (more on that in the lessons).
 
-![TODO: diagram of the audit loop: blind pass, source-of-truth pass, build and compile, repeat](/assets/auditing-design-system-mcp/TODO-audit-loop.png)
+![The audit loop: a blind consumer pass, a source-of-truth pass, build and compile, then fix and repeat](/assets/auditing-design-system-mcp/audit-loop.png)
 
 ## What was wrong
 
