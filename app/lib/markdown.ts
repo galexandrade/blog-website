@@ -1,5 +1,6 @@
 import { remark } from 'remark';
 import remarkGfm from 'remark-gfm';
+import remarkSmartypants from 'remark-smartypants';
 import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
@@ -48,8 +49,17 @@ function rehypeCodeLanguageBadge() {
 }
 
 export async function markdownToHtml(markdown: string): Promise<string> {
+    // Space Grotesk draws a straight " as a slanted closing quote, so an
+    // opening quote looks backwards. Curl quotes in prose only. The plugin
+    // skips fenced code, and masks inline code while pairing quotes around it.
+    // Dashes, ellipses and backticks stay as written.
     const processedContent = await remark()
         .use(remarkGfm)
+        .use(remarkSmartypants, {
+            backticks: false,
+            dashes: false,
+            ellipses: false
+        })
         .use(remarkRehype)
         .use(rehypeSlug)
         .use(rehypeHighlight)
