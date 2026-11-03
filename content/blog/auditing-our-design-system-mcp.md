@@ -11,13 +11,23 @@ tags:
   - Storybook
 ---
 
-An MCP server that seems to work can still be handing agents broken answers. The only way to know is to audit what the agent actually receives, and the best way to do that is to let a blind agent build from it.
+Our design system docs were written for humans. Then we served the same docs to AI agents through an MCP server. What we didn't know: those docs had blind spots, and the agents never told us. They just guessed.
 
-![A sous chef tasting a dish at the kitchen pass before it goes out](/assets/auditing-design-system-mcp/cover.jpg)
+![A sous chef tasting the dish before it leaves the kitchen](/assets/auditing-design-system-mcp/cover.jpg)
 
 A month ago I wrote about [teaching AI to use your design system](https://www.alexandrade.dev/blog/teaching-ai-to-use-your-design-system): how we gave agents access to Sous Chef, the 7shifts design system, through our own MCP server. We tested it by hand, and it seemed to work. Done, right?
 
-Not quite. I had never checked whether what the server _returned_ matched what the code actually _does_. When I finally did, I found 38 problems. Some docs produced code that doesn't compile, and the most-used parts of the API couldn't be looked up at all.
+Not quite. When an agent doesn't understand your docs, it doesn't complain. It guesses. Sometimes the result still works, but the agent had to think more, spend more tokens and go looking for the information some other way. And sometimes it doesn't work at all.
+
+## Docs for humans vs docs for agents
+
+Before you read the examples below and think "wow, that design system was a mess", let me be clear: it wasn't. These docs were fine for the people they were written for.
+
+When you document for humans, a snippet doesn't need to be perfect. You show the important part, skip the boilerplate and trust the reader to fill in the rest. A missing import or a hidden prop is no big deal, because a human knows the codebase and figures it out.
+
+An agent can't do that. It needs code that compiles, props that actually exist and nothing left to guess. Every gap becomes a guess, and every guess can drift away from what the docs meant.
+
+So the question isn't "were our docs good?". It's "were they good _for an agent_?". I had never checked. When I finally did, I found 38 problems.
 
 This post is about what was wrong, what we didn't know was wrong, and, most of all, how I found it.
 
@@ -47,11 +57,11 @@ Reading docs finds contradictions. Building from them finds missing information.
 
 After every batch of fixes I ran the exact same method again and tracked each earlier finding as fixed, partly fixed or still open. This turned out to matter a lot, because fixes introduce their own bugs (more on that in the lessons).
 
-![The audit loop: a blind consumer pass, a source-of-truth pass, build and compile, then fix and repeat](/assets/auditing-design-system-mcp/audit-loop.png)
+![The audit loop: blind consumer pass, source-of-truth pass, build and compile, fix, then repeat](/assets/auditing-design-system-mcp/audit-loop.png)
 
 ## What was wrong
 
-Let's take a look at some of the cases. I picked six. Every "before" below is real output the agent received, not something I rewrote by hand.
+Let's take a look at some of the cases. I picked four. Every "before" below is real output the agent received, not something I rewrote by hand.
 
 ### The props table that couldn't be read
 
@@ -137,31 +147,6 @@ const Default = () => {
 
 To be fair to Storybook, `{...args}` and shared templates are good practice there. They are built for humans clicking Controls. But once your stories double as documentation for an agent, each one has to stand on its own.
 
-### The token that returns `undefined`
-
-This was the very first example in the design tokens reference:
-
-```tsx
-import { COLORS, ZINDEX } from '@7shifts/sous-chef';
-
-<Text color={COLORS['color-primary-color']}>Text example</Text>;
-```
-
-`COLORS['color-primary-color']` is `undefined`. The key is `'primary-color'`. And the same document says **"You must ONLY use tokens listed in this document, do not make up values."** So the agent does exactly what it's told, and the text loses its colour without any error.
-
-After:
-
-```tsx
-// COLORS keys are the token names without the `--color-` prefix.
-// COLORS['primary-color'] === 'var(--color-primary-color)'
-export const highlightStyle = { borderColor: COLORS['primary-color'] };
-
-// Component `color` props accept the token name directly:
-<Text color="danger-color">Text example</Text>
-```
-
-One line, no error, and broken colours for any agent that followed it.
-
 ### A guideline for props that don't exist
 
 The Badge guidelines, served right inside `get_component_details("Badge")`:
@@ -219,38 +204,6 @@ And so does every one of the 890 icons and illustrations, including accessibilit
 
 The root cause: the server indexed what Storybook indexed, one entry per stories file. Your users don't think in stories files. They think in the names they import.
 
-### The Form that reloads the page
-
-This one compiles cleanly. That's what makes it nasty. The first Form story an agent saw:
-
-```tsx
-const Default = () => <Form>
-    {/* …fields */}
-    <FormFooter
-        actions={{
-            primary: <Button onClick={() => {}}>Save</Button>
-        }} />
-</Form>;
-```
-
-`FormFooter` makes its primary button `type="submit"`. With no `onSubmit` and no `formik` on the `Form`, clicking Save does a native form submission and **reloads the page**. It looks fine in Storybook, passes `tsc`, and breaks the first time someone clicks it.
-
-After:
-
-```tsx
-const Default = () => <Form onSubmit={() => console.log('Saved')}>
-    {/* …fields */}
-    <FormFooter
-        actions={{
-            primary: <Button>Save</Button>
-        }} />
-</Form>;
-```
-
-The composition guide now leads its Formik section with the rule: _"Always pass `onSubmit` or `formik` to `Form`. Without either, submitting does a native form submission and reloads the page."_
-
-Here is the twist: a later round found the same bug in a _different_ story (the Popover "Default" one). Fixing instances doesn't stop new ones.
-
 ## What's different now
 
 The first big change is coverage. Lookups went from about **66 entries to 984**. Every icon, illustration and sub-component can now be looked up by the name you import. Typos get real suggestions too: `"Buton"` now suggests `Button`, instead of just "not found".
@@ -287,7 +240,7 @@ These bugs were always there. Humans worked around them by trial and error. An a
 
 - **Audit the output, not the source**: the broken props table was invisible in the `.tsx` files and obvious in the tool response.
 - **Use a blind agent as the test user**: it doesn't know the workarounds, so it does exactly what the docs say.
-- **Make the auditor build and compile**: reading finds contradictions. Building finds the select field that renders blank and the form that reloads.
+- **Make the auditor build and compile**: reading finds contradictions. Building finds what is missing.
 - **Your docs are only as good as your weakest source**: props come from JSDoc, examples from stories, guidance from MDX, reference text from generators. Each one had its own failure mode.
 - **Stories are API documentation now**: each story has to be a complete, copyable example.
 - **Index by the names people import**: not by stories files.
