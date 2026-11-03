@@ -1,7 +1,7 @@
 ---
 pillar: ai-ready
-title: I redesigned my site with AI, and then removed the AI look
-description: AI did most of the work on my site redesign. The part that made it look like me was the last 20%, auditing the result for AI tells.
+title: Redesigning my site with AI as a teammate
+description: AI did a lot of the work on my site redesign, and I made the decisions at every step. Here is the process, from audit to design system to code, and the self-audit that made it look like me.
 date: 2026-11-03
 image: /assets/redesigning-alexandrade-dev/cover.jpg
 tags:
@@ -14,7 +14,7 @@ My first AI-built homepage had 22 orange text elements. After I audited it, it h
 
 That audit is the part of the redesign I want to talk about. You have probably noticed that sites built with AI look the same: numbered sections, `//` labels, an accent colour on everything, cards for everything. My first draft had all of it.
 
-Here is my claim: AI can do most of the work on a redesign, but only if you follow the real design process one step at a time. The last 20%, auditing the result for AI tells, is what makes it look like you.
+Here is my claim: AI can do most of the work on a redesign, but only if you follow the real design process one step at a time and make the decisions yourself. The last 20%, auditing the result for AI tells, is what makes it look like you.
 
 ![A craftsman paints the final touch on a poster while a friendly robot assistant watches](/assets/redesigning-alexandrade-dev/cover.jpg)
 
