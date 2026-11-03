@@ -16,8 +16,8 @@ import {
     person,
     personId,
     postMarkdownPath,
-    postOgImagePath,
     postPath,
+    postShareImage,
     siteName,
     websiteId
 } from '@/app/lib/site';
@@ -47,6 +47,11 @@ export async function generateMetadata({
         };
     }
 
+    const shareImage = {
+        url: postShareImage(slug, post.frontmatter.image),
+        alt: post.frontmatter.title
+    };
+
     return {
         title: post.frontmatter.title,
         description: post.frontmatter.description,
@@ -67,12 +72,14 @@ export async function generateMetadata({
             publishedTime: post.frontmatter.date,
             modifiedTime: getPostModifiedDate(post),
             authors: [post.frontmatter.author ?? 'Alex Andrade'],
-            tags: post.frontmatter.tags
+            tags: post.frontmatter.tags,
+            images: [shareImage]
         },
         twitter: {
             card: 'summary_large_image',
             title: post.frontmatter.title,
-            description: post.frontmatter.description
+            description: post.frontmatter.description,
+            images: [shareImage]
         }
     };
 }
@@ -111,8 +118,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                             datePublished: post.frontmatter.date,
                             dateModified: getPostModifiedDate(post),
                             image: absoluteUrl(
-                                post.frontmatter.image ??
-                                    postOgImagePath(post.slug)
+                                postShareImage(
+                                    post.slug,
+                                    post.frontmatter.image
+                                )
                             ),
                             keywords: post.frontmatter.tags?.join(', '),
                             inLanguage: 'en-US',

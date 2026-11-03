@@ -36,9 +36,15 @@ export function postMarkdownPath(slug: string): string {
     return `${postPath(slug)}.md`;
 }
 
-// The generated Open Graph card, also the fallback image for structured data
+// The generated share card, for posts without a featured image
 export function postOgImagePath(slug: string): string {
-    return `${postPath(slug)}/opengraph-image/card`;
+    return `${postPath(slug)}/og-card`;
+}
+
+// What link previews and structured data show for a post: its featured
+// image, else the generated card
+export function postShareImage(slug: string, image?: string): string {
+    return image ?? postOgImagePath(slug);
 }
 
 export const personId = `${siteUrl}/#person`;
