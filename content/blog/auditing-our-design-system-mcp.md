@@ -21,13 +21,13 @@ Not quite. When an agent doesn't understand your docs, it doesn't complain. It g
 
 ## Docs for humans vs docs for agents
 
-Before you read the examples below and think "wow, that design system was a mess", let me be clear: it wasn't. These docs were fine for the people they were written for.
+Before you read the examples below and think “wow, that design system was a mess”, let me be clear: it wasn't. These docs were fine for the people they were written for.
 
 When you document for humans, a snippet doesn't need to be perfect. You show the important part, skip the boilerplate and trust the reader to fill in the rest. A missing import or a hidden prop is no big deal, because a human knows the codebase and figures it out.
 
 An agent can't do that. It needs code that compiles, props that actually exist and nothing left to guess. Every gap becomes a guess, and every guess can drift away from what the docs meant.
 
-So the question isn't "were our docs good?". It's "were they good _for an agent_?". I had never checked. When I finally did, I found 38 problems.
+So the question isn't “were our docs good?”. It's “were they good _for an agent_?”. I had never checked. When I finally did, I found 38 problems.
 
 This post is about what was wrong, what we didn't know was wrong, and, most of all, how I found it.
 
@@ -45,7 +45,7 @@ This is the important part. A human who knows Sous Chef reads a broken doc and f
 
 ### 2. The source-of-truth pass
 
-A second pass checks every answer against the source: the LLM instructions, the Storybook manifest, and the component, story and MDX files. Anything marked "verified" was confirmed by hand.
+A second pass checks every answer against the source: the LLM instructions, the Storybook manifest, and the component, story and MDX files. Anything marked “verified” was confirmed by hand.
 
 The first pass tells you what the agent _believes_. The second tells you whether that belief is true.
 
@@ -61,7 +61,7 @@ After every batch of fixes I ran the exact same method again and tracked each ea
 
 ## What was wrong
 
-Let's take a look at some of the cases. I picked four. Every "before" below is real output the agent received, not something I rewrote by hand.
+Let's take a look at some of the cases. I picked four. Every “before” below is real output the agent received, not something I rewrote by hand.
 
 ### The props table that couldn't be read
 
@@ -76,7 +76,7 @@ The ask: `get_component_details("Button")`. Before:
 @category Acting as Link |
 ```
 
-See the problem? The `|` in `"button" | "submit"` is read as a column separator. On `theme`, the 13 options spread across 13 columns, so "Required", "Default" and "Description" land in the wrong places. That happened on almost every component: 236 broken rows.
+See the problem? The `|` in `"button" | "submit"` is read as a column separator. On `theme`, the 13 options spread across 13 columns, so “Required”, “Default” and “Description” land in the wrong places. That happened on almost every component: 236 broken rows.
 
 And that's just the first problem in one response. There was also no description of what a Button is, no `children` prop (it had no JSDoc comment, so it was invisible), an `href` description copied from `title`, raw `@description` and `@category` tags leaking out, defaults shown as source code (`'button' as const`), and ten margin rows on every component.
 
@@ -169,7 +169,7 @@ Badge has a single size and no `size` prop. It grows to fit its content, so keep
 
 Badge wasn't alone. Avatar, Toast and Dropdown had the same kind of drift, and some guidelines even named components that don't exist, like `ButtonGroup` and `Select`. Guidelines are written in a different place, by different people, on a different schedule than the code. With a human reader, drift is an annoyance. A model reads it as an API spec.
 
-### "Not found" for the parts you actually need
+### “Not found” for the parts you actually need
 
 Imagine an agent building a confirm dialog. It needs the footer, a toast and an icon. Before:
 
@@ -206,7 +206,7 @@ The root cause: the server indexed what Storybook indexed, one entry per stories
 
 ## What's different now
 
-The first big change is coverage. Lookups went from about **66 entries to 984**. Every icon, illustration and sub-component can now be looked up by the name you import. Typos get real suggestions too: `"Buton"` now suggests `Button`, instead of just "not found".
+The first big change is coverage. Lookups went from about **66 entries to 984**. Every icon, illustration and sub-component can now be looked up by the name you import. Typos get real suggestions too: `"Buton"` now suggests `Button`, instead of just “not found”.
 
 The second change is that the examples work. The latest round compiled every code block in every reference: 32 of 35 passed, and the 3 failures are intentional fragments. The agents built three apps from MCP output only, and they type-checked.
 
@@ -229,7 +229,7 @@ export const getFormikArrayPath = (name: string): string[] => toPath(name);
 
 It wasn't the only one. `<Form onSubmit formik>` skipped Formik validation when you passed both props. Numeric `RadioGroupField` values never showed as checked. In the latest round, 4 of the 5 new high-severity issues were component bugs, not doc bugs:
 
-- `PillSelectField`'s "Add your own" button has no `type`, so it submits the surrounding form.
+- `PillSelectField`'s “Add your own” button has no `type`, so it submits the surrounding form.
 - `TimeRangeField` never marks itself touched, so its errors never show.
 - `DateField` and `WeekField` don't show a value that arrives after mount, so editing a saved record shows blank dates.
 - `ActionListItem` nests buttons, so clicking a row action also fires the row's `onAction`.
