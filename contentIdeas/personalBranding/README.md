@@ -2,6 +2,7 @@
 
 Raw material for a future post about rebranding/redesigning alexandrade.dev.
 The audit and plan live in [`plans/personal-brand-audit.md`](../../plans/personal-brand-audit.md).
+The step-by-step process and intent are in [`process.md`](./process.md).
 
 ## `before/`: the site before the redesign
 
